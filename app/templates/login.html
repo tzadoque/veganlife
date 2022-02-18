@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block subtitle %} - Login {% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h1>Login</h1>
+  <form style="width: 300px; display: flex; flex-direction: column; gap: 8px;" action="{{ url_for('login') }}" method="POST">
+    <input class="form-control" type="email" name="email" placeholder="E-mail">
+    <input class="form-control" type="password" name="password" placeholder="Senha">
+    <input class="btn btn-primary" type="submit" value="Logar">
+  </form>
+</div>
+
+{% endblock %}

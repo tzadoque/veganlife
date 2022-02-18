@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block subtitle %} - Usuários {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+  <h1>Usuários</h1>
+  <ul class="list-group-flush">
+    {% for user in users %}
+    <li class="list-group-item">
+      <a class="text-decoration-none" href="{{ url_for('unique', id=user.id)}}">{{ user.name }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+  
+{% endblock %}
