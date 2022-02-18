@@ -1,0 +1,91 @@
+// color variables definition
+$black:           #030303;
+$white:           #fff;
+$green-1:         #18F255;
+$green-2:         #00BF36;
+$green-3:         #00A62F;
+$blue-1:          #8AD7FF;
+$blue-2:          #56C6FF;
+$blue-3:          #0098E5;
+$orange-1:        #FFDD66;
+$orange-2:        #FFCA0F;
+$orange-3:        #F2BF0A;
+$orange-4:        #E5B405;
+$dark-1:          #404040;
+$dark-2:          #262626;
+$dark-3:          #0D0D0D;
+$light-1:         #FCFCFC;
+$light-2:         #F2F2F2;
+$light-3:         #BFBFBF;
+$danger:          #FF2929;
+$warning:         #ECF100;
+$info:            #24B5FF;
+$success:         #00D83C;
+
+$theme-colors: (
+  "black":          $black,
+  "white":          $white,
+  "green-1":        $green-1,
+  "green-2":        $green-2,
+  "green-3":        $green-3,
+  "blue-1":         $blue-1,
+  "blue-2":         $blue-2,
+  "blue-3":         $blue-3,
+  "orange-1":       $orange-1,
+  "orange-2":       $orange-2,
+  "orange-3":       $orange-3,
+  "orange-4":       $orange-4,
+  "dark-1":         $dark-1,
+  "dark-2":         $dark-2,
+  "dark-3":         $dark-3,
+  "light-1":        $light-1,
+  "light-2":        $light-2,
+  "light-3":        $light-3,
+  "danger":         $danger,
+  "warning":        $warning,
+  "info":           $info,
+  "success":        $success,
+  "transparent": #fff0,
+) !default;
+
+// spacers variable definition
+$spacer: 1rem;
+$custom-spacers: (
+  "12": $spacer * 0.75,
+  "16": $spacer,
+  "18": $spacer * 1.125,
+  "25": $spacer * 1.5625,
+  "32": $spacer * 2,
+  "40": $spacer * 2.5,
+  "56": $spacer * 3.5,
+  "64": $spacer * 4,
+  "80": $spacer * 5,
+  "96": $spacer * 6,
+  "108": $spacer * 8,
+  "148": $spacer * 9.25
+) !default;
+
+//Variáveis das fontes
+$font-family-sans-serif: "Poppins", sans-serif;
+$font-families: (poppins: 'Poppins', hind: 'Hind');
+$font-sizes: (
+  12: 12px,
+  14: 14px,
+  16: 16px,
+  18: 18px,
+  20: 20px,
+  28: 28px,
+  32: 32px,
+  38: 38px,
+  48: 48px,
+);
+
+$font-weight-thin:        100;
+$font-weight-extra-light: 200;
+$font-weight-light:       300;
+$font-weight-regular:     400;
+$font-weight-medium:      500;
+$font-weight-semi-bold:   600;
+$font-weight-bold:        700;
+$font-weight-extra-bold:  800;
+$font-weight-black:       900;
