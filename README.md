@@ -4,7 +4,7 @@ O veganlife é um sistema web desenvolvido com foco no público vegano, ou que s
 
 # Tecnologias usadas
 
-O projeto usa com principal tecnologia o <a href="https://www.python.org/" target="_blank">``Python``</a> junto do micro-framework <a href="https://flask.palletsprojects.com/en/2.0.x/">``Flask``</a>. Além disso, foram utilizadas outras linguagens e frameworks, como:
+O projeto usa como principal tecnologia o <a href="https://www.python.org/" target="_blank">``Python``</a> junto do micro-framework <a href="https://flask.palletsprojects.com/en/2.0.x/">``Flask``</a>. Além disso, foram utilizadas outras linguagens e frameworks, como:
 
 - <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank">``HTML``</a>
 - <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank">``CSS``</a>
