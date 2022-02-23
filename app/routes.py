@@ -1,8 +1,7 @@
-from app.models import User
+from app.models import User, current_user
 from app import db
-from datetime import timedelta
 from flask import render_template, redirect, url_for, request, flash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 def init_app(app):
@@ -10,13 +9,15 @@ def init_app(app):
   @app.route("/")
   def index():
     users = User.query.all() # Select * from users;
-    return render_template("users.html", users=users)
+    if current_user.is_active:
+      return render_template("dashboard.html", users=users)
+    return render_template("landing-page.html")
 
-  @app.route("/user/<int:id>")
+  @app.route("/profile/<int:id>")
   @login_required
-  def unique(id):
+  def profile(id):
     user = User.query.get(id)
-    return render_template("user.html", user=user)
+    return render_template("profile.html", user=user)
 
   @app.route("/user/delete/<int:id>")
   def delete(id):
@@ -36,7 +37,8 @@ def init_app(app):
 
       db.session.add(user)
       db.session.commit()
-      
+
+      login_user(user)
       return redirect(url_for("index"))
 
     return render_template("register.html")

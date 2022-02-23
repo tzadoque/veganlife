@@ -1,19 +1,48 @@
 {% extends 'base.html' %}
 
-{% block subtitle %} - Register {% endblock %}
+{% block subtitle %} - Cadastro {% endblock %}
 
 {% block content %}
 
-<div class="container">
-
-  <h1>Register</h1>
-  <form style="width: 300px; display: flex; flex-direction: column; gap: 8px;" action="{{ url_for('register') }}" method="POST">
-    <input class="form-control" type="text" name="name" placeholder="Nome completo">
-    <input class="form-control" type="email" name="email" placeholder="E-mail">
-    <input class="form-control" type="password" name="password" placeholder="Senha">
-    <input class="btn btn-primary" type="submit" value="Cadastrar">
-  </form>
+<body style="background: #f2f2f2;">
+  <div class="container py-80">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-5 px-0">
+        <form class="form-register py-32 px-16 p-md-32" action="{{ url_for('register') }}" method="POST">
+          <div class="d-flex justify-content-center">
+            <a class="" href="{{ url_for('index') }}">
+              <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" width="169" alt="Logo do veganlife">
+            </a>
+          </div>
+          <hr class="m-0">
+          <div class="text-center d-block fw-medium fz-16 ff-poppins">
+            Realize seu cadastro.
+          </div>
+          <div class="input-field-1">
+            <label for="name">Nome</label>
+            <input class="input-1" type="text" name="name" id="name" placeholder="Digite o seu nome">
+          </div>
+          <div class="input-field-1">
+            <label for="email">E-mail</label>
+            <input class="input-1" type="email" name="email" id="email" placeholder="seuemail@exemplo.com">
+          </div>
+          <div class="input-field-1">
+            <label for="password">Senha</label>
+            <input class="input-1" type="password" name="password" id="password" placeholder="digite a sua senha">
+          </div>
+          <input class="btn-1 bg-green-2 text-white" type="submit" value="Cadastrar">
+          <hr class="m-0">
+          <div class="d-flex justify-content-center ff-hind fz-12 fw-medium dark-1">
+            Já possui uma conta? 
+            <a class="link-1 text-blue-3 fz-12 ff-hind fw-bold ps-1" href="{{ url_for('login') }}">Faça o login.</a>
+          </div>
+        </form>
+      </div>
+    </div>
   
-</div>
+  </div>
+
+  {% include 'components/footer.html' %}
+</body>
 
 {% endblock %}

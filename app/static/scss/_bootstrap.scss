@@ -1,0 +1,19 @@
+@import '../bootstrap-5.1.3/scss/functions';
+
+@import 'variables';
+
+@import '../bootstrap-5.1.3/scss/variables';
+
+@import '../bootstrap-5.1.3/scss/utilities';
+
+@import 'utilities';
+
+// init - Merge maps
+
+$spacers: map-merge($custom-spacers, $spacers);
+
+// end - Merge maps
+
+@import '../bootstrap-5.1.3/scss/mixins';
+
+@import '../bootstrap-5.1.3/scss/bootstrap.scss';
