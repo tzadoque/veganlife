@@ -51,6 +51,7 @@ $theme-colors: (
 // spacers variable definition
 $spacer: 1rem;
 $custom-spacers: (
+  "8":  $spacer * 0.5,
   "12": $spacer * 0.75,
   "16": $spacer,
   "18": $spacer * 1.125,

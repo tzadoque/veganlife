@@ -1,8 +1,12 @@
-from app.models import User, current_user
+from datetime import timedelta
+
+from flask import flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required, login_user, logout_user
+from werkzeug.security import check_password_hash, generate_password_hash
+
 from app import db
-from flask import render_template, redirect, url_for, request, flash
-from flask_login import login_user, logout_user, login_required, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
+from app.models import User
+from app.forms import LoginForm, RegisterForm
 
 def init_app(app):
 
@@ -12,12 +16,6 @@ def init_app(app):
     if current_user.is_active:
       return render_template("dashboard.html", users=users)
     return render_template("landing-page.html")
-
-  @app.route("/profile/<int:id>")
-  @login_required
-  def profile(id):
-    user = User.query.get(id)
-    return render_template("profile.html", user=user)
 
   @app.route("/user/delete/<int:id>")
   def delete(id):
@@ -29,11 +27,25 @@ def init_app(app):
 
   @app.route("/register", methods=["GET", "POST"])
   def register():
-    if request.method == "POST":
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+
       user = User()
-      user.name = request.form["name"]
-      user.email = request.form["email"]
-      user.password = generate_password_hash(request.form["password"])
+
+      if form.password.data != form.repeat_password.data:
+        flash("As senhas precisam ser iguais", category="danger")
+        return redirect(url_for("register"))
+
+      if User.query.filter_by(email=form.email.data).first():
+        flash("O email já está registrado", category="danger")
+        return redirect(url_for("register"))
+      
+      user.name = form.name.data
+      user.last_name = form.last_name.data
+      user.birth_date = form.birth_date.data
+      user.email = form.email.data
+      user.password = generate_password_hash(form.password.data)
 
       db.session.add(user)
       db.session.commit()
@@ -41,28 +53,28 @@ def init_app(app):
       login_user(user)
       return redirect(url_for("index"))
 
-    return render_template("register.html")
+    return render_template("register.html", form=form)
 
   @app.route("/login", methods=["GET", "POST"])
   def login():
-    if request.method == "POST":
-      email = request.form["email"]
-      password = request.form["password"]
+    form = LoginForm()
 
-      user = User.query.filter_by(email=email).first()
+    if form.validate_on_submit():
+      user = User.query.filter_by(email=form.email.data).first()
 
       if not user:
-        flash("Email incorreto")
+        flash("Email incorreto", category="danger")
         return redirect(url_for("login"))
 
-      if not check_password_hash(user.password, password):
-        flash("Senha incorreta")
+      if not check_password_hash(user.password, form.password.data):
+        flash("Email correto", category="success")
+        flash("Senha incorreta", category="danger")
         return redirect(url_for("login"))
 
       login_user(user)
       return redirect(url_for("index"))
 
-    return render_template("login.html")
+    return render_template("login.html", form=form)
 
   @app.route("/logout")
   @login_required

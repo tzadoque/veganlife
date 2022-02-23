@@ -1,4 +1,4 @@
-# VeganLife - Projeto integrador
+# VeganLife
 
 O veganlife é um sistema web desenvolvido com foco no público vegano, ou que se interessa no assunto. Sua principal funcionalidade é oferecer ao usuário facilidade ao acesso de informações sobre os produtos que se encontram no mercado, dizendo se eles são ou não veganos e mostrando o porquê.
 
