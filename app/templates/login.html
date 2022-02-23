@@ -9,6 +9,7 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-6 col-lg-5 px-0">
         <form class="form-login py-32 px-16 p-md-32" action="{{ url_for('login') }}" method="POST">
+          {{ form.csrf_token }}
           <div class="d-flex justify-content-center">
             <a class="" href="{{ url_for('index') }}">
               <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" width="169" alt="Logo do veganlife">
@@ -18,18 +19,29 @@
           <div class="text-center d-block fw-medium fz-16 ff-poppins">
             Bem-vinde de volta!
           </div>
+          <div>
+            {% include 'components/notification.html' %}
+          </div>
           <div class="input-field-1">
             <label for="email">E-mail</label>
-            <input class="input-1" type="email" name="email" id="email" placeholder="seuemail@exemplo.com">
+            {{ form.email(class="input-1 ff-hind fw-medium", id="email", placeholder="seuemail@exemplo.com") }}
           </div>
           <div class="input-field-1">
             <label for="password">Senha</label>
-            <input class="input-1" type="password" name="password" id="password" placeholder="digite a sua senha">
+            {{ form.password(class="input-1 ff-hind fw-medium", id="password", placeholder="digite a sua senha" )}}
+            <input type="checkbox" onclick="hideShowPassword('password')">
           </div>
-          <input class="btn-1 bg-green-2 text-white" type="submit" value="Logar">
+          <div class="d-flex justify-content-between mt-0">
+            <div class="d-flex align-items-center gap-8">
+              {{ form.remember(class="input-check", id="remember") }}
+              <label for="remember" class="ff-hind fz-14 fw-semi-bold p-0">Mantenha-me conectado.</label>
+            </div>
+            <a class="link-1 text-blue-3 fz-12 ff-hind fw-bold ps-1" href="">Esqueceu sua senha?</a>
+          </div>
+          {{ form.submit(class="btn-1 bg-green-2 text-white") }}
           <hr class="m-0">
           <div class="d-flex justify-content-center ff-hind fz-12 fw-medium dark-1">
-            Não possui uma conta? 
+            Não possui uma conta?
             <a class="link-1 text-blue-3 fz-12 ff-hind fw-bold ps-1" href="{{ url_for('register') }}">Cadastrar-se.</a>
           </div>
         </form>
