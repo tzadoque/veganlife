@@ -1,0 +1,55 @@
+.side-navbar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 88px;
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  .navbar-item-button {
+    padding: 36px 31px;
+    .toggle-menu {
+      transition: 0.5s all ease-in-out;
+    }
+  }
+
+  .navbar-item .navbar-link {
+    padding: 16px 0;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    .icon {
+      width: 88px;
+      display: flex;
+      justify-content: center;
+    }
+    .text {
+      position: absolute;
+      left: 88px;
+      white-space: nowrap;
+    }
+    &.active {
+      background: #00A62F;
+      &:hover {
+        background: #00A62F;
+      }
+    }
+    &:hover {
+      background: #404040;
+    }
+  }
+
+  &.active {
+    .toggle-menu {
+      transform: rotate(180deg);
+      transition: 0.5s all ease-in-out;
+    }
+    width: 300px;
+    transition: all 0.5s ease-in-out;
+  }
+}

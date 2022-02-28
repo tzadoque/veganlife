@@ -12,9 +12,9 @@ def init_app(app):
 
   @app.route("/")
   def index():
-    users = User.query.all() # Select * from users;
+    # users = User.query.all() # Select * from users;
     if current_user.is_active:
-      return render_template("dashboard.html", users=users)
+      return render_template("home.html")
     return render_template("landing-page.html")
 
   @app.route("/user/delete/<int:id>")
@@ -81,3 +81,7 @@ def init_app(app):
   def logout():
     logout_user()
     return redirect(url_for("index"))
+
+  @app.route("/produtos")
+  def produtos():
+    return render_template("produtos.html")

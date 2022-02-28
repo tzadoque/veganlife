@@ -6,3 +6,8 @@ function hideShowPassword(id) {
     input.type = "password"
   }
 }
+
+function toggleMenu(id) {
+  menu = document.querySelector(`#${id}`)
+  menu.classList.toggle("active")
+}
