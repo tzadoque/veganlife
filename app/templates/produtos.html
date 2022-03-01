@@ -1,3 +1,4 @@
+{% from 'components/_header.html' import header %}
 {% extends 'base.html' %}
 
 {% block subtitle %} - Produtos {% endblock %}
@@ -5,9 +6,11 @@
 {% block content %}
 <body>
   {% include 'components/side-navbar.html' %}
-  <div class="container">
-    teste
+  
+  <div class="container-fluid">
+    {{ header('Pesquisa de Produtos', current_user ) }}
   </div>
+
   {% include 'components/footer.html' %}
 </body>
 {% endblock %}
