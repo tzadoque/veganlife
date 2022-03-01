@@ -1,14 +1,14 @@
 {% macro header(page, current_user) %}
-<header class="px-40 py-28 box-shadow-1">
+<header class="px-40 py-28 box-shadow-1 bg-white">
   <nav class="top-navbar">
     <div class="container-fluid p-0 d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
         <a class="navbar-brand m-0 pe-20" href="{{url_for('index')}}">
           <img src="{{url_for('static', filename='img/svg/logo.svg')}}" alt="">
         </a>
-        <div class="text-light-3 border-start border-1 border-light-3 ps-20">
+        <h1 class="text-light-3 border-start border-1 border-light-3 ps-20 fz-16 m-0">
           {{page}}
-        </div>
+        </h1>
       </div>
       <ul class="navbar-nav flex-row gap-64 align-items-center justify-content-end">
         <li class="nav-item dropdown">
@@ -36,4 +36,5 @@
       </ul>
     </div>
   </nav>
+</header>
 {% endmacro %}

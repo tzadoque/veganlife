@@ -1,11 +1,12 @@
 from datetime import timedelta
+from itertools import product
 
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import db
-from app.models import User
+from app.models import User, Product
 from app.forms import LoginForm, RegisterForm
 
 def init_app(app):
@@ -82,10 +83,28 @@ def init_app(app):
     logout_user()
     return redirect(url_for("index"))
 
-  @app.route("/produtos")
-  def produtos():
-    return render_template("produtos.html")
-
   @app.route("/profile")
   def profile():
-    return render_template("profile.html")
+
+    if current_user.is_active:
+      return render_template("profile.html")
+    
+    return redirect(url_for('login'))
+
+  @app.route("/produtos")
+  def produtos():
+
+    if current_user.is_active:
+      products = Product.query.all()
+      return render_template("produtos.html", products=products)
+    
+    return redirect(url_for('login'))
+
+  @app.route("/produtos/<int:id>")
+  def produto(id):
+
+    if current_user.is_active:
+      product = Product.query.filter_by(id=id).first()
+      return render_template("produto.html", product=product)
+
+    return redirect(url_for('login'))

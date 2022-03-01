@@ -1,5 +1,5 @@
 {% from 'components/header.html' import header %}
-{% from 'components/cards.html' import produto %}
+<!-- {% from 'components/cards.html' import produto %} -->
 {% extends 'base.html' %}
 
 {% block subtitle %} - Produtos {% endblock %}
@@ -14,10 +14,9 @@
 
   <main class="container-fluid pt-32">
 
+    
     <div class="px-80 d-flex gap-32">
-      {% for product in products %}
-        {{ produto(product.name, product.category, product.type, product.description, product.picture, product.id) }}
-      {% endfor %}
+      {{product.name}}
     </div>
     
   </main>
