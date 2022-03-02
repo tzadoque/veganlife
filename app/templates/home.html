@@ -1,0 +1,15 @@
+{% from 'components/header.html' import header %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+<body>
+  {% include 'components/side-navbar.html' %}
+
+  <div class="container-fluid">
+    {{ header('Home', current_user ) }}
+  </div>
+
+  {% include 'components/footer.html' %}
+</body>
+{% endblock %}

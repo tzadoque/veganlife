@@ -1,0 +1,26 @@
+{% from 'components/header.html' import header %}
+<!-- {% from 'components/cards.html' import produto %} -->
+{% extends 'base.html' %}
+
+{% block subtitle %} - Produtos {% endblock %}
+
+{% block content %}
+<body class="bg-light-4">
+  {% include 'components/side-navbar.html' %}
+  
+  <div class="container-fluid">
+    {{ header('Pesquisa de Produtos', current_user ) }}
+  </div>
+
+  <main class="container-fluid pt-32">
+
+    
+    <div class="px-80 d-flex gap-32">
+      {{product.name}}
+    </div>
+    
+  </main>
+
+  {% include 'components/footer.html' %}
+</body>
+{% endblock %}

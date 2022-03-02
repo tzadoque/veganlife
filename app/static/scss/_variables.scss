@@ -17,6 +17,7 @@ $dark-3:          #0D0D0D;
 $light-1:         #FCFCFC;
 $light-2:         #F2F2F2;
 $light-3:         #BFBFBF;
+$light-4:         #F9F9F9;
 $danger:          #FF2929;
 $warning:         #ECF100;
 $info:            #24B5FF;
@@ -41,6 +42,7 @@ $theme-colors: (
   "light-1":        $light-1,
   "light-2":        $light-2,
   "light-3":        $light-3,
+  "light-4":        $light-4,
   "danger":         $danger,
   "warning":        $warning,
   "info":           $info,
@@ -55,7 +57,9 @@ $custom-spacers: (
   "12": $spacer * 0.75,
   "16": $spacer,
   "18": $spacer * 1.125,
+  "20": $spacer * 1.25,
   "25": $spacer * 1.5625,
+  "28": $spacer * 1.75,
   "32": $spacer * 2,
   "40": $spacer * 2.5,
   "56": $spacer * 3.5,
@@ -71,6 +75,7 @@ $font-family-sans-serif: "Poppins", sans-serif;
 $font-families: (poppins: 'Poppins', hind: 'Hind');
 $font-sizes: (
   12: 12px,
+  13: 13px,
   14: 14px,
   16: 16px,
   18: 18px,
@@ -90,3 +95,8 @@ $font-weight-semi-bold:   600;
 $font-weight-bold:        700;
 $font-weight-extra-bold:  800;
 $font-weight-black:       900;
+
+//Buttons
+$btn-focus-width:           0;
+$btn-box-shadow:         none;
+$btn-focus-box-shadow:      0;
