@@ -12,9 +12,9 @@
     {{ header('Pesquisa de Produtos', current_user ) }}
   </div>
 
-  <main class="container-fluid pt-32">
+  <main class="container-fluid py-32">
 
-    <div class="px-80 d-flex gap-32">
+    <div class="px-64 d-flex gap-32 flex-wrap">
       {% for product in products %}
         {{ produto(product.name, product.category, product.type, product.description, product.picture, product.id) }}
       {% endfor %}
