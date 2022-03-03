@@ -1,0 +1,22 @@
+{% from 'components/header.html' import header %}
+{% extends 'base.html' %}
+
+{% block subtitle %} - Página não encontrada {% endblock %}
+
+{% block content %}
+
+<body>
+  {% include 'components/side-navbar.html' %}
+
+  <div class="container-fluid">
+    {{ header('Página não encontrada', current_user) }}
+    <div class="p-80 d-flex flex-column align-items-center">
+      <h1 class="ff-poppins fz-48 text-center">404</h1>
+      <h2>Página não encontrada :(</h2>
+      <p>A página que você tentou procurar não existe, tente voltar para o início</p>
+    </div>
+  </div>
+
+  {% include 'components/footer.html' %}
+</body>
+{% endblock %}
