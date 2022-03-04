@@ -18,7 +18,7 @@ def create_app():
   routes.init_app(app)
 
   # register admin page
-  admin = Admin(app, name="VeganLife", template_mode="bootstrap4")
+  admin = Admin(app)
   from app import admin as administrator
   administrator.init_app(admin)
 

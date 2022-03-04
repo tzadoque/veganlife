@@ -1,0 +1,153 @@
+{% macro side_navbar(current_user) %}
+<nav id="side-navbar" class="bg-dark-2 side-navbar">
+  <div class="navbar-item-button">
+    <button class="btn toggle-menu p-0 d-block" onclick="toggleMenu('side-navbar')">
+      <img src="{{url_for('static', filename='img/svg/menu.svg')}}" alt="">
+    </button>
+  </div>
+  <hr class="m-0 bg-dark-1 mb-8">
+  <div class="navbar-item">
+    <a href="{{ url_for('index') }}" class="navbar-link {% if request.url_rule.rule == url_for('index') %} active {% endif %} ">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/home.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Home
+      </div>
+    </a>
+  </div>
+  <div class="navbar-item">
+    <a href="{{ url_for('produtos') }}" class="navbar-link {% if '/produtos' in request.path %} active {% endif %} ">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/produtos.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Pesquisa de produtos
+      </div>
+    </a>
+  </div>
+  <!-- <div class="navbar-item">
+    <a href="#" class="navbar-link">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/noticias.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Notícias
+      </div>
+    </a>
+  </div>
+  <div class="navbar-item">
+    <a href="#" class="navbar-link">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/receitas.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Receitas
+      </div>
+    </a>
+  </div>
+  <div class="navbar-item">
+    <a href="#" class="navbar-link">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/itens-salvos.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Itens Salvos
+      </div>
+    </a>
+  </div> -->
+  <hr class="m-0 bg-dark-1 my-8">
+  <div class="navbar-item">
+    <a href="{{ url_for('logout') }}" class="navbar-link">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/sair.svg')}}" alt="">
+      </div>
+      <div class="text text-danger">
+        Sair
+      </div>
+    </a>
+  </div>
+</nav>
+{% endmacro %}
+
+{% macro side_navbar_admin(current_user) %}
+<nav id="side-navbar" class="bg-dark-2 side-navbar">
+  <div class="navbar-item-button">
+    <button class="btn toggle-menu p-0 d-block" onclick="toggleMenu('side-navbar')">
+      <img src="{{url_for('static', filename='img/svg/menu.svg')}}" alt="">
+    </button>
+  </div>
+  <hr class="m-0 bg-dark-1 mb-8">
+  <div class="navbar-item">
+    <a href="{{url_for('admin.index')}}" class="navbar-link {% if request.url_rule.rule == url_for('admin.index') %} active {% endif %} ">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/home.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Home
+      </div>
+    </a>
+  </div>
+  <div class="navbar-item">
+    <a href="{{url_for('products.create_view')}}" class="navbar-link {% if 'admin/products' in request.path %} active {% endif %} ">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/produtos.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Produtos
+      </div>
+    </a>
+  </div>
+  <div class="navbar-item">
+    <a href="{{url_for('users.create_view')}}" class="navbar-link {% if 'admin/users' in request.path %} active {% endif %} ">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/users.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Usuários
+      </div>
+    </a>
+  </div>
+  <!-- <div class="navbar-item">
+    <a href="#" class="navbar-link">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/noticias.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Notícias
+      </div>
+    </a>
+  </div>
+  <div class="navbar-item">
+    <a href="#" class="navbar-link">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/receitas.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Receitas
+      </div>
+    </a>
+  </div>
+  <div class="navbar-item">
+    <a href="#" class="navbar-link">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/itens-salvos.svg')}}" alt="">
+      </div>
+      <div class="text">
+        Itens Salvos
+      </div>
+    </a>
+  </div> -->
+  <hr class="m-0 bg-dark-1 my-8">
+  <div class="navbar-item">
+    <a href="{{ url_for('logout') }}" class="navbar-link">
+      <div class="icon">
+        <img src="{{url_for('static', filename='img/svg/sair.svg')}}" alt="">
+      </div>
+      <div class="text text-danger">
+        Sair
+      </div>
+    </a>
+  </div>
+</nav>
+{% endmacro %}

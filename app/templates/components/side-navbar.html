@@ -16,7 +16,7 @@
     </a>
   </div>
   <div class="navbar-item">
-    <a href="{{ url_for('produtos') }}" class="navbar-link {% if request.url_rule.rule == url_for('produtos') %} active {% endif %} ">
+    <a href="{{ url_for('produtos') }}" class="navbar-link {% if '/produtos' in request.path %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/produtos.svg')}}" alt="">
       </div>

@@ -1,0 +1,19 @@
+{% from 'components/header.html' import header %}
+{% from 'components/navbars.html' import side_navbar, side_navbar_admin %}
+
+{% extends 'admin/master.html' %}
+
+{% block subtitle %} - Produtos {% endblock subtitle %}
+
+{% block content %}
+
+  {{ side_navbar_admin(current_user) }}
+  <div class="container-fluid">
+    {{header('Gerenciamento de produtos', current_user)}}
+    {{products}}
+  </div>
+
+  {% include 'components/footer.html' %}
+
+{% endblock content %}
+ 

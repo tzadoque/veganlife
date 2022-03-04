@@ -1,4 +1,6 @@
 {% from 'components/header.html' import header %}
+{% from 'components/navbars.html' import side_navbar %}
+
 {% extends 'base.html' %}
 
 {% block subtitle %} - Página não encontrada {% endblock %}
@@ -6,7 +8,7 @@
 {% block content %}
 
 <body>
-  {% include 'components/side-navbar.html' %}
+  {{ side_navbar(current_user) }}
 
   <div class="container-fluid">
     {{ header('Página não encontrada', current_user) }}

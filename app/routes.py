@@ -6,14 +6,14 @@ from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import db
-from app.models import User, Product
+from app.models.User import User
+from app.models.Product import Product
 from app.forms import LoginForm, RegisterForm
 
 def init_app(app):
 
   @app.route("/")
   def index():
-    # users = User.query.all() # Select * from users
     if current_user.is_active:
       return render_template("home.html")
     return render_template("landing-page.html")
@@ -108,3 +108,7 @@ def init_app(app):
       return render_template("produto.html", product=product)
 
     return redirect(url_for('login'))
+
+  @app.errorhandler(404)
+  def page_not_found(e):
+    return render_template('404.html'), 404
