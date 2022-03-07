@@ -1,4 +1,4 @@
-from flask import url_for
+from flask import redirect, url_for
 from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import FilterEqual
@@ -14,14 +14,26 @@ from app.models.User import User
 class UserView(BaseView):
   @expose('/', methods=('GET', 'POST'))
   def create_view(self):
-    users = User.query.all()
-    return self.render('admin/model/user.html', users=users)
+    return self.render('admin/model/user.html', users=User())
+
+  @expose('/delete/<int:id>', methods=('GET', 'POST'))
+  def delete_view(self, id):
+    user = User.query.filter_by(id=id).first()
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for('users.create_view'))
 
 class ProductView(BaseView):
   @expose('/', methods=('GET', 'POST'))
   def create_view(self):
-    products = Product.query.all()
-    return self.render('admin/model/product.html', products=products)
+    return self.render('admin/model/product.html', products=Product())
+  
+  @expose('/delete/<int:id>', methods=('GET', 'POST'))
+  def delete_view(self, id):
+    product = Product.query.filter_by(id=id).first()
+    db.session.delete(product)
+    db.session.commit()
+    return redirect(url_for('products.create_view'))
 
 
 def init_app(admin):
