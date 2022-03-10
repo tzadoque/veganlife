@@ -8,7 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from app import db
 from app.models.User import User
 from app.models.Product import Product
-from app.forms import LoginForm, RegisterForm
+from app.forms import LoginUser, RegisterUser
 
 def init_app(app):
 
@@ -28,7 +28,7 @@ def init_app(app):
 
   @app.route("/register", methods=["GET", "POST"])
   def register():
-    form = RegisterForm()
+    form = RegisterUser()
 
     if form.validate_on_submit():
 
@@ -58,7 +58,7 @@ def init_app(app):
 
   @app.route("/login", methods=["GET", "POST"])
   def login():
-    form = LoginForm()
+    form = LoginUser()
 
     if form.validate_on_submit():
       user = User.query.filter_by(email=form.email.data).first()

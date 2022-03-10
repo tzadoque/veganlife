@@ -14,7 +14,7 @@
         <li class="nav-item">
           <a class="link-profile {% if request.url_rule.rule == url_for('profile') %} active {% endif %}" href="{{url_for('profile')}}">
             <div>
-              <img src="{% if current_user.profile_picture %} {{current_user.profile_picture}} {% else %} {{url_for('static', filename='img/svg/profile.svg')}} {% endif %} " alt="">
+              <img src="{% if current_user.profile_picture %} {{url_for('static', filename='uploads/profiles/') + current_user.profile_picture}} {% else %} {{url_for('static', filename='img/svg/profile.svg')}} {% endif %} " alt="">
             </div>
             <span class="px-16 fz-14 ff-poppins text-dark-1">
               {{ current_user.name }}

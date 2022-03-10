@@ -1,20 +1,48 @@
-from flask import redirect, url_for
+import mimetypes
+import os
+
+from flask import redirect, url_for, request
 from flask_admin import BaseView, expose
-from flask_admin.contrib.sqla import ModelView
-from flask_admin.contrib.sqla.filters import FilterEqual
-from flask_login import current_user
-from werkzeug.security import generate_password_hash
-# from wtforms.fields import DateField, EmailField, FileField, PasswordField, SelectField, StringField, TextAreaField
-# from wtforms.validators import DataRequired, regexp
+from werkzeug.utils import secure_filename
 
 from app import db
+from app.config import Config
+from app.forms import RegisterProduct, RegisterUser
 from app.models.Product import Product
 from app.models.User import User
+
 
 class UserView(BaseView):
   @expose('/', methods=('GET', 'POST'))
   def create_view(self):
-    return self.render('admin/model/user.html', users=User())
+
+    form = RegisterUser()
+
+    if form.validate_on_submit():
+      
+      user = User()
+
+      user.name = form.name.data
+      user.last_name = form.last_name.data
+      user.birth_date = form.birth_date.data
+      user.email = form.email.data
+      user.password = form.password.data
+
+      db.session.add(user)
+      db.session.commit()
+
+      if form.profile_picture:
+        file = form.profile_picture.data
+        file.filename = 'IMG_PROFILE_' + str(user.id) + mimetypes.guess_extension(file.content_type)
+        filename = secure_filename(file.filename)
+        file.save(os.path.join( Config.UPLOAD_FOLDER + '/profiles', filename))
+
+        user.profile_picture = file.filename
+        
+        db.session.add(user)
+        db.session.commit()
+
+    return self.render('admin/model/user.html', users=User(), form=form)
 
   @expose('/delete/<int:id>', methods=('GET', 'POST'))
   def delete_view(self, id):
@@ -26,7 +54,34 @@ class UserView(BaseView):
 class ProductView(BaseView):
   @expose('/', methods=('GET', 'POST'))
   def create_view(self):
-    return self.render('admin/model/product.html', products=Product())
+
+    form = RegisterProduct()
+
+    if form.validate_on_submit():
+
+      product = Product()
+
+      product.name = form.name.data
+      product.category = form.category.data
+      product.type = form.type.data
+      product.description = form.description.data
+
+      db.session.add(product)
+      db.session.commit()
+
+      if form.picture.data:
+
+        file = form.picture.data
+        file.filename = 'IMG_PRODUCT_' + str(product.id) + mimetypes.guess_extension(file.content_type)
+        filename = secure_filename(file.filename)
+        file.save(os.path.join( Config.UPLOAD_FOLDER + '/products', filename))
+
+        product.picture = file.filename
+        
+        db.session.add(product)
+        db.session.commit()
+
+    return self.render('admin/model/product.html', products=Product(), form=form)
   
   @expose('/delete/<int:id>', methods=('GET', 'POST'))
   def delete_view(self, id):
