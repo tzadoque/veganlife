@@ -18,7 +18,15 @@ def create_app():
   routes.init_app(app)
 
   # register admin page
-  admin = Admin(app)
+  from app.admin import AdminHomeView
+  admin = Admin(
+    app,
+    index_view=AdminHomeView(
+      name='Home',
+      template='admin/myhome.html',
+      url='/admin'
+    )
+  )
   from app import admin as administrator
   administrator.init_app(admin)
 

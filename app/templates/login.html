@@ -3,9 +3,7 @@
 {% block subtitle %} - Login {% endblock %}
 
 {% block content %}
-
-<body class="bg-light-2">
-  <div class="container py-80">
+  <main class="container py-80">
     <div class="row justify-content-center">
       <div class="col-12 col-md-6 col-lg-5 px-0">
         <form class="form-login py-32 px-16 p-md-32" action="{{ url_for('login') }}" method="POST">
@@ -36,7 +34,7 @@
               {{ form.remember(class="input-check", id="remember") }}
               <label for="remember" class="ff-hind fz-14 fw-semi-bold p-0">Mantenha-me conectado.</label>
             </div>
-            <a class="link-1 text-blue-3 fz-12 ff-hind fw-bold ps-1" href="">Esqueceu sua senha?</a>
+            <!-- <a class="link-1 text-blue-3 fz-12 ff-hind fw-bold ps-1" href="">Esqueceu sua senha?</a> -->
           </div>
           {{ form.submit(class="btn-1 bg-green-2 text-white") }}
           <hr class="m-0">
@@ -47,9 +45,8 @@
         </form>
       </div>
     </div>
-  </div>
+  </main>
 
   {% include 'components/footer.html' %}
-</body>
 
 {% endblock %}

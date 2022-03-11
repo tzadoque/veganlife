@@ -5,9 +5,14 @@
 {% block content %}
 
   {{ side_navbar_admin(current_user) }}
-  <div class="container-fluid">
-    {{header('Administração', current_user)}}
-    {{products}}
+  {{header('Administração', current_user)}}
+  <div class="container-fluid container-xxl">
+    Número de produtos:
+    {{ products.query.all() | length()}} <br>
+
+    Número de usuários:
+    {{ users.query.all() | length() }}
+
   </div>
 
   {% include 'components/footer.html' %}

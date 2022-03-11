@@ -1,9 +1,8 @@
 import mimetypes
 import os
-from wsgiref import validate
 
 from flask import redirect, url_for, request
-from flask_admin import BaseView, expose
+from flask_admin import BaseView, AdminIndexView, expose
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash
 
@@ -149,68 +148,13 @@ class ProductView(BaseView):
     db.session.commit()
     return redirect(url_for('products.list_view'))
 
+class AdminHomeView(AdminIndexView):
+  @expose('/')
+  def index(self):
+    products = Product()
+    users = User()
+    return self.render('admin/index.html', products=products, users=users)
 
 def init_app(admin):
   admin.add_view(UserView(name='Usuários', endpoint='users'))
   admin.add_view(ProductView(name='Produtos', endpoint='products'))
-
-# class UserView(ModelView):
-
-#   @expose('/usuario/', methods=('GET', 'POST'))
-#   def create_view(self):
-
-#     return self.render('create_user.html')
-
-#   form_edit_rules = ('name', 'last_name', 'birth_date', 'email')
-#   edit_modal = True
-
-#   form_extra_fields = {
-#     "name": StringField("Nome", validators={
-#       DataRequired()
-#     }),
-#     "last_name": StringField("Sobrenome", validators={
-#       DataRequired()
-#     }),
-#     "email": EmailField("E-mail", validators={
-#       DataRequired()
-#     }),
-#     "password": PasswordField("Password", validators={
-#       DataRequired()
-#     }),
-#     "birth_date": DateField("Data de nascimento")
-#   }
-
-#   column_filters = ['name', 'last_name', 'email', 'birth_date']
-
-#   column_exclude_list = ("password")
-
-#   def on_model_change(self, form, model, is_created):
-#     if is_created:
-#       model.password = generate_password_hash(form.password.data)
-
-#   def is_accessible(self):
-#     return current_user.is_authenticated
-
-# class ProductView(ModelView):
-#   edit_modal = True
-
-#   product_categories = [
-#     ('P', 'Proteínas'), 
-#     ('HL', 'Higiene e Limpeza')
-#   ]
-
-#   form_extra_fields = {
-#     "name": StringField("Nome", validators={DataRequired()}),
-#     "description": TextAreaField("Descrição", validators={DataRequired()}),
-#     "type": SelectField('Selecione o Tipo', choices=[('V', 'Vegano'), ('N', 'Não vegano')], validators={DataRequired()}),
-#     "category": SelectField('Selecione a Categoria', choices=product_categories, validators={DataRequired()}),
-#     "picture_upload": FileField('Imagem do produto'),
-#     "picture": StringField('Caminho da imagem')
-#   }
-
-#   column_filters = [
-#     "name",
-#     FilterEqual(column=Product.category, name='Categorias', options=product_categories),
-#     FilterEqual(column=Product.type, name="Tipos", options=[('V', 'Vegano'), ('N', 'Não vegano')])
-#   ]
-

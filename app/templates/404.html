@@ -9,9 +9,9 @@
 
 <body>
   {{ side_navbar(current_user) }}
+  {{ header('Página não encontrada', current_user) }}
 
-  <div class="container-fluid">
-    {{ header('Página não encontrada', current_user) }}
+  <div class="container-fluid container-xxl">
     <div class="p-80 d-flex flex-column align-items-center">
       <h1 class="ff-poppins fz-48 text-center">404</h1>
       <h2>Página não encontrada :(</h2>

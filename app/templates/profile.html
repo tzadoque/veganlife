@@ -7,14 +7,13 @@
 {% block content %}
 
   {{ side_navbar(current_user) }}
+  {{ header('Configurações de Perfil', current_user ) }}
 
-  <div class="container-fluid">
-    {{ header('Configurações de Perfil', current_user ) }}
-  </div>
-
-  <div class="container-fluid">
-    
-  </div>
+  <main class="container-fluid container-xxl py-32">
+    <div class="px-64">
+      teste rsrs asas
+    </div>
+  </main>
 
   {% include 'components/footer.html' %}
 
