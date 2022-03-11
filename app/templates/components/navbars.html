@@ -89,7 +89,7 @@
     </a>
   </div>
   <div class="navbar-item">
-    <a href="{{url_for('products.create_view')}}" class="navbar-link {% if 'admin/products' in request.path %} active {% endif %} ">
+    <a href="{{url_for('products.list_view')}}" class="navbar-link {% if 'admin/products' in request.path %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/produtos.svg')}}" alt="">
       </div>
@@ -99,7 +99,7 @@
     </a>
   </div>
   <div class="navbar-item">
-    <a href="{{url_for('users.create_view')}}" class="navbar-link {% if 'admin/users' in request.path %} active {% endif %} ">
+    <a href="{{url_for('users.list_view')}}" class="navbar-link {% if 'admin/users' in request.path %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/users.svg')}}" alt="">
       </div>

@@ -1,0 +1,44 @@
+{% from 'components/header.html' import header %}
+{% from 'components/navbars.html' import side_navbar, side_navbar_admin %}
+
+{% extends 'admin/master.html' %}
+
+{% block subtitle %} - Cadastro de produto {% endblock subtitle %}
+
+{% block content %}
+
+  {{ side_navbar_admin(current_user) }}
+  <main class="container-fluid">
+    {{header('Cadastro de produto', current_user)}}
+    <div class="py-32 px-80 d-flex gap-32 flex-column">
+
+      <div class="bg-white p-24 box-shadow-1 border-radius-8">
+        <form action="{{url_for('products.create_view')}}" method="post" enctype="multipart/form-data" class="d-flex flex-column">
+          {{ form.csrf_token }}
+
+          <label for="">nome</label>
+          {{ form.name }}
+
+          <label for="">categoria</label>
+          {{form.category}}
+
+          <label for="">tipo</label>
+          {{form.type}}
+
+          <label for="">Descrição</label>
+          {{form.description}}
+
+          <label for="">Imagem do produto</label>
+          {{form.picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
+          <img class="img-product-admin" id="output" />
+
+          {{form.submit}}
+        </form>
+      </div>
+    </div>
+  </main>
+
+  {% include 'components/footer.html' %}
+
+{% endblock content %}
+ 

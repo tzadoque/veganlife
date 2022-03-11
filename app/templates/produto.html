@@ -8,12 +8,9 @@
 {% block content %}
 
 {{ side_navbar(current_user) }}
+{{ header('Pesquisa de Produtos', current_user ) }}
 
-<div class="container-fluid">
-  {{ header('Pesquisa de Produtos', current_user ) }}
-</div>
-
-<main class="container-fluid py-32">
+<main class="container-fluid container-xxl py-32">
 
   <div class="px-80">
     <div class="pb-32 d-flex gap-16 align-items-center">
@@ -25,12 +22,12 @@
       </p>
     </div>
 
-    <div class="open-product-card">
+    <div class="open-product-card d-flex flex-column flex-lg-row">
       <div class="card-img position-relative">
         {% if product.picture %}
-        <img src="{{url_for('static', filename='uploads') + product.picture }}" alt="">
+          <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/') + product.picture }}" alt="">
         {% else %}
-        <img src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
+          <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
         {% endif %}
         <div class="type {% if product.type == 'V' %} vegan {% else %} not-vegan {% endif %}">
           {% if product.type == 'V' %} Vegano {% else %} Não vegano {% endif %}

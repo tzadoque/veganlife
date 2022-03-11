@@ -4,9 +4,9 @@
     <div class="position-relative">
       <div class="d-flex justify-content-center">
         {% if imagem %}
-        <img class="product-card-image" src="{{url_for('static', filename='uploads/products/') + imagem }}" alt="">
+        <img class="img-product" src="{{url_for('static', filename='uploads/products/') + imagem }}" alt="">
         {% else %}
-        <img class="product-card-image" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
+        <img class="img-product" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
         {% endif %}
       </div>
       <div class="type {% if tipo == 'V' %} vegan {% else %} not-vegan {% endif %}">

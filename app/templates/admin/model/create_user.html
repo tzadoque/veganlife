@@ -1,0 +1,46 @@
+{% from 'components/header.html' import header %}
+{% from 'components/navbars.html' import side_navbar, side_navbar_admin %}
+
+{% extends 'admin/master.html' %}
+
+{% block subtitle %} - Cadastro de usuários {% endblock subtitle %}
+
+{% block content %}
+
+  {{ side_navbar_admin(current_user) }}
+  <main class="container-fluid">
+    {{header('Cadastro de usuários', current_user)}}
+    <div class="py-32 px-80 d-flex flex-column gap-32">
+      <div class="bg-white p-24 box-shadow-1 border-radius-8">
+        <form action="{{url_for('users.create_view')}}" method="post" enctype="multipart/form-data" class="d-flex flex-column">
+          {{ form.csrf_token }}
+
+          <label for="">nome</label>
+          {{ form.name }}
+
+          <label for="">sobrenome</label>
+          {{form.last_name}}
+
+          <label for="">Nascimento</label>
+          {{form.birth_date}}
+
+          <label for="">Email</label>
+          {{form.email}}
+
+          <label for="">Senha</label>
+          {{form.password}}
+
+          <label for="">Imagem de perfil</label>
+          {{form.profile_picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
+          <img class="img-profile" id="output" />
+
+          {{form.submit}}
+        </form>
+      </div>
+    </div>
+  </main>
+
+  {% include 'components/footer.html' %}
+
+{% endblock content %}
+ 

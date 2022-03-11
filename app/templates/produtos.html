@@ -9,12 +9,9 @@
 {% block content %}
 
   {{ side_navbar(current_user) }}
-  
-  <div class="container-fluid">
-    {{ header('Pesquisa de Produtos', current_user ) }}
-  </div>
+  {{ header('Pesquisa de Produtos', current_user ) }}
 
-  <main class="container-fluid py-32">
+  <main class="container-fluid container-xxl py-32">
 
     <div class="px-64 d-flex gap-32 flex-wrap">
       {% for product in products %}

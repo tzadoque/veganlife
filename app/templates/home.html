@@ -5,10 +5,9 @@
 {% block content %}
 
   {{ side_navbar(current_user) }}
+  {{ header('Home', current_user ) }}
 
-  <div class="container-fluid">
-    {{ header('Home', current_user ) }}
-  </div>
+  <main></main>
 
   {% include 'components/footer.html' %}
 

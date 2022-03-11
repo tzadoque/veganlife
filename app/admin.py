@@ -1,9 +1,11 @@
 import mimetypes
 import os
+from wsgiref import validate
 
 from flask import redirect, url_for, request
 from flask_admin import BaseView, expose
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash
 
 from app import db
 from app.config import Config
@@ -14,6 +16,10 @@ from app.models.User import User
 
 class UserView(BaseView):
   @expose('/', methods=('GET', 'POST'))
+  def list_view(self):
+    return self.render('admin/model/user.html', users=User())
+
+  @expose('/create', methods=('GET', 'POST'))
   def create_view(self):
 
     form = RegisterUser()
@@ -26,12 +32,12 @@ class UserView(BaseView):
       user.last_name = form.last_name.data
       user.birth_date = form.birth_date.data
       user.email = form.email.data
-      user.password = form.password.data
+      user.password = generate_password_hash(form.password.data)
 
       db.session.add(user)
       db.session.commit()
 
-      if form.profile_picture:
+      if form.profile_picture.data:
         file = form.profile_picture.data
         file.filename = 'IMG_PROFILE_' + str(user.id) + mimetypes.guess_extension(file.content_type)
         filename = secure_filename(file.filename)
@@ -42,17 +48,24 @@ class UserView(BaseView):
         db.session.add(user)
         db.session.commit()
 
-    return self.render('admin/model/user.html', users=User(), form=form)
+        return redirect(url_for('users.list_view'))
+
+    return self.render('admin/model/create_user.html', users=User(), form=form)
+
 
   @expose('/delete/<int:id>', methods=('GET', 'POST'))
   def delete_view(self, id):
     user = User.query.filter_by(id=id).first()
     db.session.delete(user)
     db.session.commit()
-    return redirect(url_for('users.create_view'))
+    return redirect(url_for('users.list_view'))
 
 class ProductView(BaseView):
   @expose('/', methods=('GET', 'POST'))
+  def list_view(self):
+    return self.render('admin/model/products.html', products=Product())
+
+  @expose('/create', methods=('GET', 'POST'))
   def create_view(self):
 
     form = RegisterProduct()
@@ -81,14 +94,60 @@ class ProductView(BaseView):
         db.session.add(product)
         db.session.commit()
 
-    return self.render('admin/model/product.html', products=Product(), form=form)
+      return redirect(url_for('products.list_view'))
+
+    return self.render('admin/model/create_product.html', products=Product(), form=form)
+
+  @expose('/edit/<int:id>', methods=('GET', 'POST'))
+  def edit_view(self, id):
+
+    form = RegisterProduct()
+
+    product = Product.query.filter_by(id=id).first()
+
+    form.name.data = product.name
+    form.category.data = product.category
+    form.type.data = product.type
+    form.description.data = product.description
+
+    return self.render('admin/model/edit_product.html', form=form, product=product)
+
+  @expose('/edit/<int:id>/submit', methods=('GET', 'POST'))
+  def edit_submit(self, id):
+    form = RegisterProduct()
+
+    product = Product.query.filter_by(id=id).first()
+
+    if form.validate_on_submit():
+
+      product.name = form.name.data
+      product.category = form.category.data
+      product.type = form.type.data
+      product.description = form.description.data
+
+      if form.picture.data:
+
+        file = form.picture.data
+        file.filename = 'IMG_PRODUCT_' + str(product.id) + mimetypes.guess_extension(file.content_type)
+        filename = secure_filename(file.filename)
+        file.save(os.path.join( Config.UPLOAD_FOLDER + '/products', filename))
+
+        product.picture = file.filename
+        db.session.commit()
+      else:
+        product.picture = product.picture
+        db.session.commit()
+      
+
+      return redirect(url_for('products.list_view'))
+
   
   @expose('/delete/<int:id>', methods=('GET', 'POST'))
   def delete_view(self, id):
     product = Product.query.filter_by(id=id).first()
     db.session.delete(product)
     db.session.commit()
-    return redirect(url_for('products.create_view'))
+    return redirect(url_for('products.list_view'))
 
 
 def init_app(admin):
