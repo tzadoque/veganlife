@@ -56,14 +56,31 @@
   &:checked {
     border: 1px solid #00bf36;
     background-color: #00bf36;
+    background-image: url('/static/img/svg/check-light.svg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
     & + label {
-      color: $dark-1;
+      color: #404040;
     }
   }
   &:focus {
     outline: 1px solid black;
+  }
+}
+
+.hideShowPassword {
+  all: unset;
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 16px;
+  background: url('/static/img/svg/show.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  &:checked {
+    background-image: url('/static/img/svg/hide.svg');
   }
 }

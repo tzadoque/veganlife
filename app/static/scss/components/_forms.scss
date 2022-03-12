@@ -29,49 +29,6 @@
       top: -8px;
       left: 11px;
     }
-    input[type="checkbox"] {
-      cursor: pointer !important;
-      all: unset;
-      display: block;
-      width: 24px;
-      height: 24px;
-      position: absolute;
-      background-repeat: no-repeat !important;
-      background-position: center !important;
-      &:checked {
-        cursor: pointer !important;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-      }
-      right: 16px;
-    }
-  }
-
-  .input-check {
-    all: unset;
-    display: block;
-    width: 14px;
-    height: 14px;
-    cursor: pointer;
-    border: 1px solid #979797;
-    border-radius: 2px;
-    & + label {
-      color: #979797;
-      cursor: pointer;
-    }
-    &:checked {
-      border: 1px solid #00bf36;
-      background-color: #00bf36;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      & + label {
-        color: $dark-1;
-      }
-    }
-    &:focus {
-      outline: 1px solid black;
-    }
   }
 }
 

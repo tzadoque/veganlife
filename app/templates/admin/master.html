@@ -10,18 +10,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="shortcut icon" href="{{url_for('static', filename='img/svg/veganlife-icon.svg')}}" type="image/x-icon">
     <title>Admin {% block subtitle %} {% endblock %}</title>
-
-    <style>
-      .input-check:checked {
-        background: url('{{ request.host_url + "static/img/svg/check-light.svg" }}');
-      }
-      .input-field-1 input[type=checkbox] {
-        background: url('{{ request.host_url + "static/img/svg/show.svg" }}') !important;
-      }
-      .input-field-1 input[type=checkbox]:checked {
-        background: url('{{ request.host_url + "static/img/svg/hide.svg" }}') !important;
-      }
-    </style>
   </head>
   <body class="bg-light-4">
     {% block content %}

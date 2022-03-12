@@ -19286,6 +19286,7 @@ a {
 .input-check:checked {
   border: 1px solid #00bf36;
   background-color: #00bf36;
+  background-image: url("/static/img/svg/check-light.svg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -19295,6 +19296,22 @@ a {
 }
 .input-check:focus {
   outline: 1px solid black;
+}
+
+.hideShowPassword {
+  all: unset;
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 16px;
+  background: url("/static/img/svg/show.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+.hideShowPassword:checked {
+  background-image: url("/static/img/svg/hide.svg");
 }
 
 .form {
@@ -19326,48 +19343,6 @@ a {
   position: absolute;
   top: -8px;
   left: 11px;
-}
-.form .input-field-1 input[type=checkbox] {
-  cursor: pointer !important;
-  all: unset;
-  display: block;
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  right: 16px;
-}
-.form .input-field-1 input[type=checkbox]:checked {
-  cursor: pointer !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-}
-.form .input-check {
-  all: unset;
-  display: block;
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
-  border: 1px solid #979797;
-  border-radius: 2px;
-}
-.form .input-check + label {
-  color: #979797;
-  cursor: pointer;
-}
-.form .input-check:checked {
-  border: 1px solid #00bf36;
-  background-color: #00bf36;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.form .input-check:checked + label {
-  color: #404040;
-}
-.form .input-check:focus {
-  outline: 1px solid black;
 }
 
 @media (max-width: 575.98px) {
