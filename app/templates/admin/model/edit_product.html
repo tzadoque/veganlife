@@ -31,7 +31,7 @@
           <label for="">Imagem do produto</label>
 
           {% if product.picture %}
-            {{form.picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)", value=product.picture)}}
+            {{form.picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
             <img src="{{url_for('static', filename='uploads/products/' + product.picture)}}" class="img-product-admin" id="output" />
           {% else %}
             {{form.picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}

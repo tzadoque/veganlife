@@ -7,40 +7,40 @@
 
 {% block content %}
 
-  {{ side_navbar_admin(current_user) }}
-  <main class="container-fluid">
-    {{header('Cadastro de usuários', current_user)}}
-    <div class="py-32 px-80 d-flex flex-column gap-32">
-      <div class="bg-white p-24 box-shadow-1 border-radius-8">
-        <form action="{{url_for('users.create_view')}}" method="post" enctype="multipart/form-data" class="d-flex flex-column">
-          {{ form.csrf_token }}
+{{ side_navbar_admin(current_user) }}
+<main class="container-fluid">
+  {{header('Cadastro de usuários', current_user)}}
+  <div class="py-32 px-80 d-flex flex-column gap-32">
+    <div class="bg-white p-24 box-shadow-1 border-radius-8">
+      <form action="{{url_for('users.create_view')}}" method="post" enctype="multipart/form-data"
+        class="d-flex flex-column">
+        {{ form.csrf_token }}
 
-          <label for="">nome</label>
-          {{ form.name }}
+        <label for="">nome</label>
+        {{ form.name }}
 
-          <label for="">sobrenome</label>
-          {{form.last_name}}
+        <label for="">sobrenome</label>
+        {{form.last_name}}
 
-          <label for="">Nascimento</label>
-          {{form.birth_date}}
+        <label for="">Nascimento</label>
+        {{form.birth_date}}
 
-          <label for="">Email</label>
-          {{form.email}}
+        <label for="">Email</label>
+        {{form.email}}
 
-          <label for="">Senha</label>
-          {{form.password}}
+        <label for="">Senha</label>
+        {{form.password}}
 
-          <label for="">Imagem de perfil</label>
-          {{form.profile_picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
-          <img class="img-profile" id="output" />
+        <label for="">Imagem de perfil</label>
+        {{form.profile_picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
+        <img class="img-profile-admin" id="output" />
 
-          {{form.submit}}
-        </form>
-      </div>
+        {{form.submit}}
+      </form>
     </div>
-  </main>
+  </div>
+</main>
 
-  {% include 'components/footer.html' %}
+{% include 'components/footer.html' %}
 
 {% endblock content %}
- 

@@ -3,6 +3,7 @@ import os
 
 from flask import redirect, url_for, request
 from flask_admin import BaseView, AdminIndexView, expose
+from flask_login import current_user
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash
 
@@ -16,10 +17,14 @@ from app.models.User import User
 class UserView(BaseView):
   @expose('/', methods=('GET', 'POST'))
   def list_view(self):
+    if not current_user.is_active:
+      return "VOCÊ NÃO TEM AUTORIZAÇÃO PARA ACESSAR ESSA PÁGINA"
     return self.render('admin/model/user.html', users=User())
 
   @expose('/create', methods=('GET', 'POST'))
   def create_view(self):
+    if not current_user.is_active:
+      return "VOCÊ NÃO TEM AUTORIZAÇÃO PARA ACESSAR ESSA PÁGINA"
 
     form = RegisterUser()
 
@@ -54,6 +59,8 @@ class UserView(BaseView):
 
   @expose('/delete/<int:id>', methods=('GET', 'POST'))
   def delete_view(self, id):
+    if not current_user.is_active:
+      return "VOCÊ NÃO TEM AUTORIZAÇÃO PARA ACESSAR ESSA PÁGINA"
     user = User.query.filter_by(id=id).first()
     db.session.delete(user)
     db.session.commit()
@@ -62,10 +69,15 @@ class UserView(BaseView):
 class ProductView(BaseView):
   @expose('/', methods=('GET', 'POST'))
   def list_view(self):
+    if not current_user.is_active:
+      return "VOCÊ NÃO TEM AUTORIZAÇÃO PARA ACESSAR ESSA PÁGINA"
     return self.render('admin/model/products.html', products=Product())
 
   @expose('/create', methods=('GET', 'POST'))
   def create_view(self):
+
+    if not current_user.is_active:
+      return "VOCÊ NÃO TEM AUTORIZAÇÃO PARA ACESSAR ESSA PÁGINA"
 
     form = RegisterProduct()
 
@@ -99,6 +111,8 @@ class ProductView(BaseView):
 
   @expose('/edit/<int:id>', methods=('GET', 'POST'))
   def edit_view(self, id):
+    if not current_user.is_active:
+      return "VOCÊ NÃO TEM AUTORIZAÇÃO PARA ACESSAR ESSA PÁGINA"
 
     form = RegisterProduct()
 
@@ -113,6 +127,8 @@ class ProductView(BaseView):
 
   @expose('/edit/<int:id>/submit', methods=('GET', 'POST'))
   def edit_submit(self, id):
+    if not current_user.is_active:
+      return "VOCÊ NÃO TEM AUTORIZAÇÃO PARA ACESSAR ESSA PÁGINA"
     form = RegisterProduct()
 
     product = Product.query.filter_by(id=id).first()
@@ -140,9 +156,10 @@ class ProductView(BaseView):
 
       return redirect(url_for('products.list_view'))
 
-  
   @expose('/delete/<int:id>', methods=('GET', 'POST'))
   def delete_view(self, id):
+    if not current_user.is_active:
+      return "VOCÊ NÃO TEM AUTORIZAÇÃO PARA ACESSAR ESSA PÁGINA"
     product = Product.query.filter_by(id=id).first()
     db.session.delete(product)
     db.session.commit()
@@ -151,6 +168,8 @@ class ProductView(BaseView):
 class AdminHomeView(AdminIndexView):
   @expose('/')
   def index(self):
+    if not current_user.is_active:
+      return "VOCÊ NÃO TEM AUTORIZAÇÃO PARA ACESSAR ESSA PÁGINA"
     products = Product()
     users = User()
     return self.render('admin/index.html', products=products, users=users)

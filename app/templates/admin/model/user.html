@@ -7,60 +7,61 @@
 
 {% block content %}
 
-  {{ side_navbar_admin(current_user) }}
-  {{header('Gerenciamento de usuários', current_user)}}
-  <main class="container-fluid container-xxl">
-    <div class="py-32 px-80 d-flex flex-column gap-32">
-      <div class="bg-white p-24 box-shadow-1 border-radius-8">
-        <a href="{{url_for('users.create_view')}}">Criar usuário</a>
-      </div>
-      <div class="bg-white p-24 box-shadow-1 border-radius-8">
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Sobrenome</th>
-                <th scope="col">Nascimento</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Foto</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for user in users.query.all() %}
-                <tr>
-                  <th scope="row">{{user.id}}</th>
-                  <td>{{user.name}}</td>
-                  <td>{{user.last_name}}</td>
-                  <td>{{user.birth_date}}</td>
-                  <td>{{user.email}}</td>
-                  {% if user.profile_picture %}
-                    <td>
-                      <img class="img-profile" src="{{url_for('static', filename='uploads/profiles/') + user.profile_picture}}" alt="">
-                    </td>
-                  {% else %}
-                    <td>
-                      <img class="img-profile" src="{{url_for('static', filename='img/svg/profile.svg')}}" alt="">
-                    </td>
-                  {% endif %}
-                  <td>
-                    <div class="d-flex gap-8">
-                      <a href="{{url_for('users.delete_view', id=user.id)}}" class="bg-danger py-1 px-2 rounded" title="Deletar usuário">
-                        <img src="{{url_for('static', filename='img/svg/trash.svg')}}" alt="">
-                      </a>
-                    </div>
-                  </td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+{{ side_navbar_admin(current_user) }}
+{{header('Gerenciamento de usuários', current_user)}}
+<main class="container-fluid container-xxl">
+  <div class="py-32 px-80 d-flex flex-column gap-32">
+    <div class="bg-white p-24 box-shadow-1 border-radius-8">
+      <a href="{{url_for('users.create_view')}}">Criar usuário</a>
+    </div>
+    <div class="bg-white p-24 box-shadow-1 border-radius-8">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Sobrenome</th>
+              <th scope="col">Nascimento</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Foto</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users.query.all() %}
+            <tr>
+              <th scope="row">{{user.id}}</th>
+              <td>{{user.name}}</td>
+              <td>{{user.last_name}}</td>
+              <td>{{user.birth_date}}</td>
+              <td>{{user.email}}</td>
+              {% if user.profile_picture %}
+              <td>
+                <img class="img-profile-admin"
+                  src="{{url_for('static', filename='uploads/profiles/') + user.profile_picture}}" alt="">
+              </td>
+              {% else %}
+              <td>
+                <img class="img-profile-admin" src="{{url_for('static', filename='img/svg/profile.svg')}}" alt="">
+              </td>
+              {% endif %}
+              <td>
+                <div class="d-flex gap-8">
+                  <a href="{{url_for('users.delete_view', id=user.id)}}" class="bg-danger py-1 px-2 rounded"
+                    title="Deletar usuário">
+                    <img src="{{url_for('static', filename='img/svg/trash.svg')}}" alt="">
+                  </a>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
-  </main>
+  </div>
+</main>
 
-  {% include 'components/footer.html' %}
+{% include 'components/footer.html' %}
 
 {% endblock content %}
- 

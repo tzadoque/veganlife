@@ -9,9 +9,9 @@ class LoginUser(FlaskForm):
   submit = SubmitField("Entrar")
 
 class RegisterUser(FlaskForm):
-  name = StringField("Nome")
+  name = StringField("Nome", validators={DataRequired()})
   last_name = StringField("Sobrenome")
-  birth_date = DateField("Data de Nascimento")
+  birth_date = DateField("Data de Nascimento", validators={DataRequired()})
   email = EmailField("E-mail")
   password = PasswordField("Senha")
   repeat_password = PasswordField("Repetir Senha")
