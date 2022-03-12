@@ -39,11 +39,11 @@
                     <td>{{product.description | truncate(50, true, '...')}}</td>
                     {% if product.picture %}
                       <td>
-                        <img class="img-product-admin" src="{{url_for('static', filename='uploads/products/') + product.picture}}" alt="">
+                        <img width="100px" class="img-product-admin" src="{{url_for('static', filename='uploads/products/') + product.picture}}" alt="">
                       </td>
                     {% else %}
                       <td>
-                        <img class="img-product-admin" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
+                        <img width="100px" class="img-product-admin" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
                       </td>
                     {% endif %}
                     <td>

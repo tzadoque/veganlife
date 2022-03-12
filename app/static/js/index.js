@@ -11,3 +11,10 @@ function toggleMenu(id) {
   menu = document.querySelector(`#${id}`)
   menu.classList.toggle("active")
 }
+
+function loadFile(event) {
+  var image = document.getElementById('output');
+  image.src = URL.createObjectURL(event.target.files[0]);
+  imagem = document.querySelector('#image')
+  image.classList.add("img-product-admin")
+};

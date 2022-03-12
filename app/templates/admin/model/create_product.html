@@ -8,31 +8,44 @@
 {% block content %}
 
   {{ side_navbar_admin(current_user) }}
-  <main class="container-fluid">
-    {{header('Cadastro de produto', current_user)}}
-    <div class="py-32 px-80 d-flex gap-32 flex-column">
+  {{header('Cadastro de produto', current_user)}}
 
-      <div class="bg-white p-24 box-shadow-1 border-radius-8">
-        <form action="{{url_for('products.create_view')}}" method="post" enctype="multipart/form-data" class="d-flex flex-column">
+  <main class="container py-32">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 px-0">
+        <form action="{{url_for('products.create_view')}}" method="post" enctype="multipart/form-data" class="form py-32 px-16 p-md-32">
           {{ form.csrf_token }}
 
-          <label for="">nome</label>
-          {{ form.name }}
+          <div class="input-field-1">
+            <label for="productName">Nome</label>
+            {{ form.name(class="input-1", id="productName", placeholder="Digite o nome do produto") }}
+          </div>
 
-          <label for="">categoria</label>
-          {{form.category}}
+          <div class="">
+            <!-- <label for="productCategory">Categoria</label> -->
+            {{ form.category(class="input-select", id="productCategory") }}
+          </div>
 
-          <label for="">tipo</label>
-          {{form.type}}
+          <div class="">
+            <!-- <label for="productName">Classificação</label> -->
+            {{ form.type(class="input-select", id="productName") }}
+          </div>
 
-          <label for="">Descrição</label>
-          {{form.description}}
+          <div class="input-field-1">
+            <label for="productName">Descrição</label>
+            {{ form.description(class="input-1", id="productName") }}
+          </div>
 
-          <label for="">Imagem do produto</label>
-          {{form.picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
-          <img class="img-product-admin" id="output" />
+          <div class="">
+            <label for="image" class="form-label">Imagem</label>
+            <hr>
+            {{form.picture(class="form-control",accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
+            <div>
+              <img class="img-fluid" id="output" />
+            </div>
+          </div>
 
-          {{form.submit}}
+          {{ form.submit(class="btn-1 bg-green-2 text-white") }}
         </form>
       </div>
     </div>

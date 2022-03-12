@@ -20,6 +20,7 @@ class RegisterUser(FlaskForm):
 
 class RegisterProduct(FlaskForm):
   product_categories = [
+    ("", "Selecione a Categoria"),
     ('P', 'Proteínas'), 
     ('HL', 'Higiene e Limpeza'),
     ('B', 'Bebidas'),
@@ -31,7 +32,7 @@ class RegisterProduct(FlaskForm):
 
   name = StringField("Nome do produto", validators={DataRequired()})
   category = SelectField('Selecione a Categoria', choices=product_categories, validators={DataRequired()})
-  type = SelectField('Selecione o Tipo', choices=[('V', 'Vegano'), ('N', 'Não vegano')], validators={DataRequired()})
+  type = SelectField('Selecione o Tipo', choices=[("", "Selecione o Tipo"), ('V', 'Vegano'), ('N', 'Não vegano')], validators={DataRequired()})
   description = TextAreaField("Descrição", validators={DataRequired()})
   picture = FileField('Imagem do produto')
   submit = SubmitField('Cadastrar produto')

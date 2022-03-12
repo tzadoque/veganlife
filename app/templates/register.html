@@ -3,60 +3,63 @@
 {% block subtitle %} - Cadastro {% endblock %}
 
 {% block content %}
-  <main class="container py-80">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-6 col-lg-5 px-0">
-        <form class="form-register py-32 px-16 p-md-32" action="{{ url_for('register') }}" method="POST">
-          {{ form.csrf_token }}
-          <div class="d-flex justify-content-center">
-            <a class="" href="{{ url_for('index') }}">
-              <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" width="169" alt="Logo do veganlife">
-            </a>
-          </div>
-          <hr class="m-0">
-          <div class="text-center d-block fw-medium fz-16 ff-poppins">
-            Cadastre-se:
-          </div>
-          <div>
-            {% include 'components/notification.html' %}
-          </div>
-          <div class="input-field-1">
-            <label for="name">Nome</label>
-            {{ form.name(class="input-1 ff-hind fw-medium", id="name", placeholder="digite o seu nome", required=True)}}
-          </div>
-          <div class="input-field-1">
-            <label for="lastName">Sobrenome</label>
-            {{ form.last_name(class="input-1 ff-hind fw-medium", id="lastName", placeholder="digite o seu sobrenome")}}
-          </div>
-          <div class="input-field-1">
-            <label for="birthDate">Data de Nascimento</label>
-            {{ form.birth_date(class="input-1 ff-hind fw-medium", id="birthDate") }}
-          </div>
-          <div class="input-field-1">
-            <label for="email">E-mail</label>
-            {{ form.email(class="input-1 ff-hind fw-medium", id="email", placeholder="seuemail@exemplo.com", required=True) }}
-          </div>
-          <div class="input-field-1">
-            <label for="password">Senha</label>
-            {{ form.password(class="input-1 ff-hind fw-medium", id="password", placeholder="digite uma senha", required=True) }}
-            <input type="checkbox" onclick="hideShowPassword('password')">
-          </div>
-          <div class="input-field-1">
-            <label for="repeatPassword">Repetir Senha</label>
-            {{ form.repeat_password(class="input-1 ff-hind fw-medium", id="repeatPassword", placeholder="digite a senha novamente", required=True) }}
-            <input type="checkbox" onclick="hideShowPassword('repeatPassword')">
-          </div>
-          {{ form.submit(class="btn-1 bg-green-2 text-white") }}
-          <hr class="m-0">
-          <div class="d-flex justify-content-center ff-hind fz-12 fw-medium dark-1">
-            Já possui uma conta?
-            <a class="link-1 text-blue-3 fz-12 ff-hind fw-bold ps-1" href="{{ url_for('login') }}">Faça o login.</a>
-          </div>
-        </form>
-      </div>
+<main class="container py-80">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-5 px-0">
+      <form class="form py-32 px-16 p-md-32" action="{{ url_for('register') }}" method="POST">
+        {{ form.csrf_token }}
+        <div class="d-flex justify-content-center">
+          <a class="" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" width="169" alt="Logo do veganlife">
+          </a>
+        </div>
+        <hr class="m-0">
+        <div class="text-center d-block fw-medium fz-16 ff-poppins">
+          Cadastre-se:
+        </div>
+        <div>
+          {% include 'components/notification.html' %}
+        </div>
+        <div class="input-field-1">
+          <label for="name">Nome</label>
+          {{ form.name(class="input-1 ff-hind fw-medium", id="name", placeholder="digite o seu nome", required=True)}}
+        </div>
+        <div class="input-field-1">
+          <label for="lastName">Sobrenome</label>
+          {{ form.last_name(class="input-1 ff-hind fw-medium", id="lastName", placeholder="digite o seu sobrenome")}}
+        </div>
+        <div class="input-field-1">
+          <label for="birthDate">Data de Nascimento</label>
+          {{ form.birth_date(class="input-1 ff-hind fw-medium", id="birthDate") }}
+        </div>
+        <div class="input-field-1">
+          <label for="email">E-mail</label>
+          {{ form.email(class="input-1 ff-hind fw-medium", id="email", placeholder="seuemail@exemplo.com",
+          required=True) }}
+        </div>
+        <div class="input-field-1">
+          <label for="password">Senha</label>
+          {{ form.password(class="input-1 ff-hind fw-medium", id="password", placeholder="digite uma senha",
+          required=True) }}
+          <input type="checkbox" onclick="hideShowPassword('password')">
+        </div>
+        <div class="input-field-1">
+          <label for="repeatPassword">Repetir Senha</label>
+          {{ form.repeat_password(class="input-1 ff-hind fw-medium", id="repeatPassword", placeholder="digite a senha
+          novamente", required=True) }}
+          <input type="checkbox" onclick="hideShowPassword('repeatPassword')">
+        </div>
+        {{ form.submit(class="btn-1 bg-green-2 text-white") }}
+        <hr class="m-0">
+        <div class="d-flex justify-content-center ff-hind fz-12 fw-medium dark-1">
+          Já possui uma conta?
+          <a class="link-1 text-blue-3 fz-12 ff-hind fw-bold ps-1" href="{{ url_for('login') }}">Faça o login.</a>
+        </div>
+      </form>
     </div>
-  </main>
+  </div>
+</main>
 
-  {% include 'components/footer.html' %}
+{% include 'components/footer.html' %}
 
 {% endblock %}
