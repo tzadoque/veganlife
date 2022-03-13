@@ -9,10 +9,10 @@
     <!--styles css-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="shortcut icon" href="{{url_for('static', filename='img/svg/veganlife-icon.svg')}}" type="image/x-icon">
-    <title>VeganLife {% block subtitle %} {% endblock %}</title>
+    <title>Admin {% block subtitle %} {% endblock %}</title>
   </head>
   <body class="bg-light-4">
-    {% block content %} 
+    {% block content %}
     {% endblock %}
   </body>
 </html>

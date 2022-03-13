@@ -1,31 +1,20 @@
 {% macro header(page, current_user) %}
-<header class="px-40 py-28 box-shadow-1 bg-white">
-  <nav class="top-navbar">
+<header class="box-shadow-1 bg-white container-fluid">
+  <nav class="top-navbar px-40 py-28">
     <div class="container-fluid p-0 d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
         <a class="navbar-brand m-0 pe-20" href="{{url_for('index')}}">
           <img src="{{url_for('static', filename='img/svg/logo.svg')}}" alt="">
         </a>
-        <h1 class="text-light-3 border-start border-1 border-light-3 ps-20 fz-16 m-0">
+        <p class="text-light-3 border-start border-1 border-light-3 ps-20 fz-16 m-0">
           {{page}}
-        </h1>
+        </p>
       </div>
       <ul class="navbar-nav flex-row gap-64 align-items-center justify-content-end">
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="{{url_for('static', filename='img/svg/notification.svg')}}" alt="">
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">notificação 1</a></li>
-            <li><a class="dropdown-item" href="#">notificação 2</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">notificação 3</a></li>
-          </ul>
-        </li>
         <li class="nav-item">
-          <a class="link-profile {% if request.url_rule.rule == url_for('profile') %} active {% endif %}" href="{{url_for('profile')}}">
+          <a class="link-profile {% if 'profile' in request.path %} active {% endif %}" href="{{url_for('profile')}}">
             <div>
-              <img src="{% if current_user.profile_picture %} {{current_user.profile_picture}} {% else %} {{url_for('static', filename='img/svg/profile.svg')}} {% endif %} " alt="">
+              <img class="img-profile-header" src="{% if current_user.profile_picture %} {{url_for('static', filename='uploads/profiles/') + current_user.profile_picture}} {% else %} {{url_for('static', filename='img/svg/profile.svg')}} {% endif %} " alt="">
             </div>
             <span class="px-16 fz-14 ff-poppins text-dark-1">
               {{ current_user.name }}

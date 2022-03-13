@@ -1,31 +1,31 @@
 {% macro produto(nome, categoria, tipo, descricao, imagem, id) %}
 <a href="{{url_for('produto', id=id)}}" class="text-decoration-none">
-  <div class="card-product">
+  <div class="product-card">
     <div class="position-relative">
       <div class="d-flex justify-content-center">
         {% if imagem %}
-          <img class="card-product-image" src="{{url_for('static', filename='') + imagem }}" alt="">
+        <img class="img-product" src="{{url_for('static', filename='uploads/products/') + imagem }}" alt="">
         {% else %}
-          <img class="card-product-image" src="{{url_for('static', filename='img/products/img-default.png')}}" alt="">
+        <img class="img-product" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
         {% endif %}
       </div>
       <div class="type {% if tipo == 'V' %} vegan {% else %} not-vegan {% endif %}">
         {% if tipo == 'V' %} Vegano {% else %} Não vegano {% endif %}
       </div>
     </div>
-      <div class="p-16 h-100 d-flex flex-column justify-content-between gap-16 overflow-hidden">
-        <div class="overflow-hidden">
-          <p class="ff-poppins fz-16 fw-semi-bold text-dark-2 mb-12">
-            {{nome}}
-          </p>
-          <p class="ff-hind fz-13 m-0 text-dark-1">
-            {{descricao | truncate(73, True, '...')}}
-          </p>
-        </div>
-        <div class="">
-          <img src="{{url_for('static', filename='img/svg/save.svg')}}" alt="">
-        </div>
+    <div class="p-16 h-100 d-flex flex-column justify-content-between gap-16 overflow-hidden">
+      <div class="overflow-hidden">
+        <p class="ff-poppins fz-16 fw-semi-bold text-dark-2 m-0 mb-12">
+          {{nome}}
+        </p>
+        <p class="ff-hind fz-13 m-0 text-dark-1">
+          {{descricao | truncate(73, True, '...')}}
+        </p>
       </div>
+      <div class="save">
+        <img src="{{url_for('static', filename='img/svg/save.svg')}}" alt="">
+      </div>
+    </div>
   </div>
 </a>
 {% endmacro %}

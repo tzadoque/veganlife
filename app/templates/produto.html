@@ -1,26 +1,61 @@
 {% from 'components/header.html' import header %}
-<!-- {% from 'components/cards.html' import produto %} -->
+{% from 'components/navbars.html' import side_navbar %}
+
 {% extends 'base.html' %}
 
-{% block subtitle %} - Produtos {% endblock %}
+{% block subtitle %} - {{product.name}} {% endblock %}
 
 {% block content %}
-<body class="bg-light-4">
-  {% include 'components/side-navbar.html' %}
-  
-  <div class="container-fluid">
-    {{ header('Pesquisa de Produtos', current_user ) }}
+
+{{ side_navbar(current_user) }}
+{{ header('Pesquisa de Produtos', current_user ) }}
+
+<main class="container-fluid container-xxl py-32">
+
+  <div class="px-80">
+    <div class="pb-32 d-flex gap-16 align-items-center">
+      <a href="{{url_for('produtos')}}" class="return-link">
+        <img src="{{url_for('static', filename='img/svg/return-arrow.svg')}}" alt="">
+      </a>
+      <p class="fz-18 ff-poppins text-dark-2 fw-semi-bold m-0">
+        Detalhes do produto
+      </p>
+    </div>
+
+    <div class="open-product-card d-flex flex-column flex-lg-row">
+      <div class="card-img position-relative">
+        {% if product.picture %}
+          <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/') + product.picture }}" alt="">
+        {% else %}
+          <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
+        {% endif %}
+        <div class="type {% if product.type == 'V' %} vegan {% else %} not-vegan {% endif %}">
+          {% if product.type == 'V' %} Vegano {% else %} Não vegano {% endif %}
+        </div>
+      </div>
+      <div class="p-24 w-100">
+        <div class="d-flex justify-content-between">
+          <div class="">
+            <h1 class="m-0 text-green-3 fz-24 ff-poppins fw-semi-bold">{{product.name}}</h1>
+          </div>
+          <div class="save d-flex align-items-start">
+            <img src="{{url_for('static', filename='img/svg/save.svg')}}" alt="">
+          </div>
+        </div>
+        <div class="pt-16 ps-24 fz-16 text-dark-1 card-description">
+          <div class="ff-poppins fw-bold pb-8">
+            Explicação:
+          </div>
+          <div class="ff-hind">
+            {{ product.description }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <main class="container-fluid pt-32">
+</main>
 
-    
-    <div class="px-80 d-flex gap-32">
-      {{product.name}}
-    </div>
-    
-  </main>
+{% include 'components/footer.html' %}
 
-  {% include 'components/footer.html' %}
-</body>
 {% endblock %}

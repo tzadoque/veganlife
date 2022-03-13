@@ -1,43 +1,77 @@
-.card-product {
+.product-card {
   display: flex;
   flex-direction: column;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 255px;
   height: 348px;
   box-sizing: border-box;
   transition: transform 0.3s ease-in-out;
-  .card-product-image {
-    padding: 3px;
-    width: 100%;
-    height: 178px;
-    border-radius: 8px 8px 0px 0px;
-    object-fit: cover;
-  }
 
   .type {
     position: absolute;
     bottom: 1px;
     left: 1px;
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-size: 11px;
     font-weight: 700;
     border-radius: 0px 8px 0px 0px;
-    border: 2px solid #FFFFFF;
+    border: 2px solid #ffffff;
     padding: 8px 16px;
     &.vegan {
-      background: #BEFFD0;
-      color: #00A62F;
+      background: #beffd0;
+      color: #00a62f;
     }
     &.not-vegan {
-      background: #FFDCDC;
-      color: #FF2929;
+      background: #ffdcdc;
+      color: #ff2929;
     }
   }
 
   &:hover {
     transform: scale(1.02);
     transition: transform 0.3s ease-in-out;
+  }
+}
+
+.open-product-card {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  .card-img {
+    width: 443px;
+    height: 310px;
+  }
+  .type {
+    position: absolute;
+    bottom: 0;
+    font-family: "Poppins";
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 0 8px 0 0;
+    border: 2px solid #ffffff;
+    padding: 10px 21px;
+    &.vegan {
+      background: #beffd0;
+      color: #00a62f;
+    }
+    &.not-vegan {
+      background: #ffdcdc;
+      color: #ff2929;
+    }
+  }
+
+  .card-description {
+    position: relative;
+    &::before {
+      content: "";
+      display: block;
+      height: 64px;
+      width: 4.94px;
+      background: #404040;
+      position: absolute;
+      left: 0;
+    }
   }
 }

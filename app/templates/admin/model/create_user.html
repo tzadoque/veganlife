@@ -1,0 +1,79 @@
+{% from 'components/header.html' import header %}
+{% from 'components/navbars.html' import side_navbar, side_navbar_admin %}
+
+{% extends 'admin/master.html' %}
+
+{% block subtitle %} - Gerenciamento de usuários {% endblock subtitle %}
+
+{% block content %}
+
+{{ side_navbar_admin(current_user) }}
+{{header('Gerenciamento de usuários', current_user)}}
+<main class="container py-32">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 px-0">
+      <form action="{{url_for('users.create_view')}}" method="post" enctype="multipart/form-data" class="form py-32 px-16 p-md-32">
+        {{ form.csrf_token }}
+
+        <div class="text-center d-block fw-medium fz-16 ff-poppins">
+          Criar novo usuário
+        </div>
+
+        <hr class="m-0">
+
+        {% include 'components/notification.html' %}  
+
+        <div class="input-field-1">
+          <label for="userName">Nome</label>
+          {{ form.name(class='input-1', id='userName', placeholder="digite o nome do usuário", required=True) }}
+        </div>
+
+        <div class="input-field-1">
+          <label for="userLastName">Sobrenome</label>
+          {{ form.last_name(class='input-1', id='userLastName', placeholder="digite o sobrenome do usuário", required=True) }}
+        </div>
+
+        <div class="input-field-1">
+          <label for="userBirthDate">Data de nascimento</label>
+          {{ form.birth_date(class='input-1', id='userBirthDate', required=True) }}
+        </div>
+
+        <div class="input-field-1">
+          <label for="userEmail">E-mail</label>
+          {{ form.email(class='input-1', id='userEmail', placeholder="digite o email do usuário", required=True) }}
+        </div>
+
+        <div class="input-field-1">
+          <label for="userPassword">Senha</label>
+          {{ form.password(class="input-1", id="userPassword", placeholder="digite a senha do usuário", required=True) }}
+          <input type="checkbox" class="hideShowPassword" onclick="hideShowPassword('userPassword')">
+        </div>
+
+        <div class="input-field-1">
+          <label for="repeatUserPassword">Repetir Senha</label>
+          {{ form.repeat_password(class="input-1", id="repeatUserPassword", placeholder="repita a senha do usuário", required=True) }}
+          <input type="checkbox" class="hideShowPassword" onclick="hideShowPassword('repeatUserPassword')">
+        </div>
+
+        <div class="">
+          <label for="image" class="form-label">Imagem de perfil</label>
+          <hr>
+          <div class="pb-16">
+            <div class="d-flex justify-content-center">
+              <div class="img-profile">
+                <img src="{{url_for('static', filename='img/svg/profile.svg')}}" id="output" />
+              </div>
+            </div>
+          </div>
+          {{form.profile_picture(class="form-control", accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
+        </div>
+
+        {{ form.submit(class="btn-1 bg-green-2 text-white", value="Criar usuário") }}
+      </form>
+    </div>
+  </div>
+</main>
+
+{% include 'components/footer.html' %}
+
+{% endblock content %}

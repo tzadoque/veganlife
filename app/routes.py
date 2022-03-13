@@ -1,19 +1,20 @@
-from datetime import timedelta
-from itertools import product
-
+import mimetypes
+import os
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 
 from app import db
-from app.models import User, Product
-from app.forms import LoginForm, RegisterForm
+from app.config import Config
+from app.models.User import User
+from app.models.Product import Product
+from app.forms import LoginUser, RegisterUser
 
 def init_app(app):
 
   @app.route("/")
   def index():
-    # users = User.query.all() # Select * from users
     if current_user.is_active:
       return render_template("home.html")
     return render_template("landing-page.html")
@@ -26,9 +27,9 @@ def init_app(app):
 
     return redirect("/")
 
-  @app.route("/register", methods=["GET", "POST"])
+  @app.route("/register/", methods=("GET", "POST"))
   def register():
-    form = RegisterForm()
+    form = RegisterUser()
 
     if form.validate_on_submit():
 
@@ -56,9 +57,9 @@ def init_app(app):
 
     return render_template("register.html", form=form)
 
-  @app.route("/login", methods=["GET", "POST"])
+  @app.route("/login/", methods=("GET", "POST"))
   def login():
-    form = LoginForm()
+    form = LoginUser()
 
     if form.validate_on_submit():
       user = User.query.filter_by(email=form.email.data).first()
@@ -83,15 +84,77 @@ def init_app(app):
     logout_user()
     return redirect(url_for("index"))
 
-  @app.route("/profile")
+  @app.route("/profile/")
   def profile():
 
-    if current_user.is_active:
-      return render_template("profile.html")
-    
-    return redirect(url_for('login'))
+    if not current_user.is_active:
+      return redirect(url_for('login'))
 
-  @app.route("/produtos")
+    user = User.query.filter_by(id=current_user.id).first()
+
+    day = user.birth_date[8] + user.birth_date[9]
+    month = user.birth_date[5] + user.birth_date[6] 
+    year = user.birth_date[0] + user.birth_date[1] + user.birth_date[2] + user.birth_date[3]
+
+    formated_birth_date = f'{day}/{month}/{year}'
+
+    return render_template("profile.html", user=user, formated_birth_date=formated_birth_date)
+  
+  @app.route("/profile/edit", methods=("GET", "POST"))
+  def edit_profile():
+
+    if not current_user.is_active:
+      return redirect(url_for('login'))
+    
+    form = RegisterUser()
+
+    user = User.query.filter_by(id=current_user.id).first()
+
+    form.name.data = user.name
+    form.last_name.data = user.last_name
+    form.email.data = user.email
+
+    return render_template("edit_profile.html", user=user, form=form)
+
+  @app.route("/profile/edit/submit", methods=("GET", "POST"))
+  def submit_profile_edit():
+    
+    if not current_user.is_active:
+      return redirect(url_for('login'))
+
+    form = RegisterUser()
+
+    user = User.query.filter_by(id=current_user.id).first()
+
+    if form.validate_on_submit():
+
+      if User.query.filter_by(email=form.email.data).first():
+        if form.email.data != user.email:
+          flash("O email já está registrado", category="danger")
+          return redirect(url_for("edit_profile"))
+
+      user.name = form.name.data
+      user.last_name = form.last_name.data
+      user.birth_date = form.birth_date.data
+      user.email = form.email.data
+
+      if form.profile_picture.data:
+
+        file = form.profile_picture.data
+        file.filename = 'IMG_PROFILE_' + str(user.id) + mimetypes.guess_extension(file.content_type)
+        filename = secure_filename(file.filename)
+        file.save(os.path.join( Config.UPLOAD_FOLDER + '/profiles', filename))
+
+        user.profile_picture = file.filename
+      else:
+        user.profile_picture = user.profile_picture
+
+      db.session.commit()
+
+      return redirect(url_for('profile'))
+
+
+  @app.route("/produtos/")
   def produtos():
 
     if current_user.is_active:
@@ -100,7 +163,7 @@ def init_app(app):
     
     return redirect(url_for('login'))
 
-  @app.route("/produtos/<int:id>")
+  @app.route("/produtos/<int:id>/")
   def produto(id):
 
     if current_user.is_active:
@@ -108,3 +171,7 @@ def init_app(app):
       return render_template("produto.html", product=product)
 
     return redirect(url_for('login'))
+
+  @app.errorhandler(404)
+  def page_not_found(e):
+    return render_template('404.html'), 404

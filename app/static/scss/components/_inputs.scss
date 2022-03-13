@@ -1,14 +1,12 @@
-//Inputs
-
-//Input do tipo 1
 .input-1 {
   all: unset;
   border-radius: 8px;
-  border: 1px solid #c4c4c4;
+  border: 1px solid #BFBFBF;
   padding: 14px 16px;
   font-weight: 500;
+  font-family: 'Hind';
   color: $dark-1;
-  font-size: 0.875rem;
+  font-size: 16px;
   background: #FFFFFF;
   width: 100%;
   box-sizing: border-box;
@@ -18,6 +16,71 @@
   }
 
   &::placeholder {
-    color: #DADADA;
+    color: #BFBFBF;
+  }
+}
+
+.input-select {
+  all: unset;
+  border-radius: 8px;
+  border: 1px solid #BFBFBF;
+  padding: 10px 30px 10px 16px;
+  font-weight: 500;
+  font-family: 'Hind';
+  color: #404040;
+  font-size: 0.875rem;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  outline: 0;
+  background-image: url('/static/img/svg/arrow-select.svg');
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+
+  &:focus {
+    border: 1px solid #404040;
+  }
+}
+
+.input-check {
+  all: unset;
+  display: block;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  border: 1px solid #979797;
+  border-radius: 2px;
+  & + label {
+    color: #979797;
+    cursor: pointer;
+  }
+  &:checked {
+    border: 1px solid #00bf36;
+    background-color: #00bf36;
+    background-image: url('/static/img/svg/check-light.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    & + label {
+      color: #404040;
+    }
+  }
+  &:focus {
+    outline: 1px solid black;
+  }
+}
+
+.hideShowPassword {
+  all: unset;
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 16px;
+  background: url('/static/img/svg/show.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  &:checked {
+    background-image: url('/static/img/svg/hide.svg');
   }
 }
