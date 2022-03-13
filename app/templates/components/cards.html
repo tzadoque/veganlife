@@ -1,5 +1,5 @@
 {% macro produto(nome, categoria, tipo, descricao, imagem, id) %}
-<a href="{{url_for('produto', id=id)}}" class="text-decoration-none">
+<a href="{{url_for('product.product_view', id=id)}}" class="text-decoration-none">
   <div class="product-card">
     <div class="position-relative">
       <div class="d-flex justify-content-center">

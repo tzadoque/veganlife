@@ -1,0 +1,20 @@
+{% from 'components/header.html' import header %}
+{% from 'components/navbars.html' import side_navbar, admin_side_navbar %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+{{ admin_side_navbar(current_user) }}
+{{header('Administração', current_user)}}
+<div class="container-fluid container-xxl">
+  Número de produtos:
+  {{ products.query.all() | length()}} <br>
+
+  Número de usuários:
+  {{ users.query.all() | length() }}
+
+</div>
+
+{% include 'components/footer.html' %}
+
+{% endblock content %}

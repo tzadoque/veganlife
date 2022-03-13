@@ -7,7 +7,8 @@
   </div>
   <hr class="m-0 bg-dark-1 mb-8">
   <div class="navbar-item">
-    <a href="{{ url_for('index') }}" class="navbar-link {% if request.url_rule.rule == url_for('index') %} active {% endif %} ">
+    <a href="{{ url_for('index') }}"
+      class="navbar-link {% if request.url_rule.rule == url_for('index') %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/home.svg')}}" alt="">
       </div>
@@ -17,7 +18,8 @@
     </a>
   </div>
   <div class="navbar-item">
-    <a href="{{ url_for('produtos') }}" class="navbar-link {% if '/produtos' in request.path %} active {% endif %} ">
+    <a href="{{ url_for('product.products_list_view') }}"
+      class="navbar-link {% if '/produtos' in request.path %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/produtos.svg')}}" alt="">
       </div>
@@ -58,7 +60,7 @@
   </div> -->
   <hr class="m-0 bg-dark-1 my-8">
   <div class="navbar-item">
-    <a href="{{ url_for('logout') }}" class="navbar-link">
+    <a href="{{ url_for('auth.logout') }}" class="navbar-link">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/sair.svg')}}" alt="">
       </div>
@@ -70,7 +72,7 @@
 </nav>
 {% endmacro %}
 
-{% macro side_navbar_admin(current_user) %}
+{% macro admin_side_navbar(current_user) %}
 <nav id="side-navbar" class="bg-dark-2 side-navbar">
   <div class="navbar-item-button">
     <button class="btn toggle-menu p-0 d-block" onclick="toggleMenu('side-navbar')">
@@ -79,7 +81,8 @@
   </div>
   <hr class="m-0 bg-dark-1 mb-8">
   <div class="navbar-item">
-    <a href="{{url_for('admin.index')}}" class="navbar-link {% if request.url_rule.rule == url_for('admin.index') %} active {% endif %} ">
+    <a href="{{url_for('admin.admin_home_view')}}"
+      class="navbar-link {% if request.url_rule.rule == url_for('admin.admin_home_view') %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/home.svg')}}" alt="">
       </div>
@@ -89,7 +92,8 @@
     </a>
   </div>
   <div class="navbar-item">
-    <a href="{{url_for('products.list_view')}}" class="navbar-link {% if 'admin/products' in request.path %} active {% endif %} ">
+    <a href="{{url_for('admin.product.product_list_view')}}"
+      class="navbar-link {% if 'admin/products' in request.path %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/produtos.svg')}}" alt="">
       </div>
@@ -99,7 +103,8 @@
     </a>
   </div>
   <div class="navbar-item">
-    <a href="{{url_for('users.list_view')}}" class="navbar-link {% if 'admin/users' in request.path %} active {% endif %} ">
+    <a href="{{url_for('admin.user.user_list_view')}}"
+      class="navbar-link {% if 'admin/users' in request.path %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/users.svg')}}" alt="">
       </div>
@@ -140,7 +145,7 @@
   </div> -->
   <hr class="m-0 bg-dark-1 my-8">
   <div class="navbar-item">
-    <a href="{{ url_for('logout') }}" class="navbar-link">
+    <a href="{{ url_for('auth.logout') }}" class="navbar-link">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/sair.svg')}}" alt="">
       </div>

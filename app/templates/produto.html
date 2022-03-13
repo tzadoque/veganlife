@@ -14,7 +14,7 @@
 
   <div class="px-80">
     <div class="pb-32 d-flex gap-16 align-items-center">
-      <a href="{{url_for('produtos')}}" class="return-link">
+      <a href="{{url_for('product.products_list_view')}}" class="return-link">
         <img src="{{url_for('static', filename='img/svg/return-arrow.svg')}}" alt="">
       </a>
       <p class="fz-18 ff-poppins text-dark-2 fw-semi-bold m-0">
@@ -25,9 +25,10 @@
     <div class="open-product-card d-flex flex-column flex-lg-row">
       <div class="card-img position-relative">
         {% if product.picture %}
-          <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/') + product.picture }}" alt="">
+        <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/') + product.picture }}"
+          alt="">
         {% else %}
-          <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
+        <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
         {% endif %}
         <div class="type {% if product.type == 'V' %} vegan {% else %} not-vegan {% endif %}">
           {% if product.type == 'V' %} Vegano {% else %} Não vegano {% endif %}

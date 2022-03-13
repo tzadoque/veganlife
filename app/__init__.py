@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_admin import Admin
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager 
 from app.config import Config
@@ -17,18 +16,4 @@ def create_app():
   from app import routes
   routes.init_app(app)
 
-  # register admin page
-  from app.admin import AdminHomeView
-  admin = Admin(
-    app,
-    index_view=AdminHomeView(
-      name='Home',
-      template='admin/myhome.html',
-      url='/admin'
-    )
-  )
-  from app import admin as administrator
-  administrator.init_app(admin)
-
   return app
-

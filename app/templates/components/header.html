@@ -12,9 +12,12 @@
       </div>
       <ul class="navbar-nav flex-row gap-64 align-items-center justify-content-end">
         <li class="nav-item">
-          <a class="link-profile {% if 'profile' in request.path %} active {% endif %}" href="{{url_for('profile')}}">
+          <a class="link-profile {% if 'profile' in request.path %} active {% endif %}"
+            href="{{url_for('profile.profile_view')}}">
             <div>
-              <img class="img-profile-header" src="{% if current_user.profile_picture %} {{url_for('static', filename='uploads/profiles/') + current_user.profile_picture}} {% else %} {{url_for('static', filename='img/svg/profile.svg')}} {% endif %} " alt="">
+              <img class="img-profile-header"
+                src="{% if current_user.profile_picture %} {{url_for('static', filename='uploads/profiles/') + current_user.profile_picture}} {% else %} {{url_for('static', filename='img/svg/profile.svg')}} {% endif %} "
+                alt="">
             </div>
             <span class="px-16 fz-14 ff-poppins text-dark-1">
               {{ current_user.name }}

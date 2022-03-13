@@ -1,19 +1,20 @@
 {% from 'components/header.html' import header %}
-{% from 'components/navbars.html' import side_navbar, side_navbar_admin %}
+{% from 'components/navbars.html' import side_navbar, admin_side_navbar %}
 
-{% extends 'admin/master.html' %}
+{% extends 'base.html' %}
 
 {% block subtitle %} - Usuários {% endblock subtitle %}
 
 {% block content %}
 
-{{ side_navbar_admin(current_user) }}
+{{ admin_side_navbar(current_user) }}
 {{header('Gerenciamento de usuários', current_user)}}
 <main class="container-fluid container-xxl">
   <div class="py-32 px-80 d-flex flex-column gap-32">
     <div class="bg-white p-24 box-shadow-1 border-radius-8 d-flex justify-content-between">
       <div>pesquisa e filtros</div>
-      <a class="btn btn-green-3 text-white border-radius-8" href="{{url_for('users.create_view')}}">Criar usuário</a>
+      <a class="btn btn-green-3 text-white border-radius-8" href="{{url_for('admin.user.user_create_view')}}">Criar
+        usuário</a>
     </div>
     <div class="bg-white p-24 box-shadow-1 border-radius-8">
       <div class="table-responsive">
@@ -41,14 +42,10 @@
                 <img class="img-profile-admin"
                   src="{{url_for('static', filename='uploads/profiles/') + user.profile_picture}}" alt="">
               </td>
-              {% else %}
-              <td>
-                <img class="img-profile-admin" src="{{url_for('static', filename='img/svg/profile.svg')}}" alt="">
-              </td>
               {% endif %}
               <td>
                 <div class="d-flex gap-8">
-                  <a href="{{url_for('users.delete_view', id=user.id)}}" class="bg-danger py-1 px-2 rounded"
+                  <a href="{{url_for('admin.user.delete_user', id=user.id)}}" class="bg-danger py-1 px-2 rounded"
                     title="Deletar usuário">
                     <img src="{{url_for('static', filename='img/svg/trash.svg')}}" alt="">
                   </a>

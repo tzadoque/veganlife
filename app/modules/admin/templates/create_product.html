@@ -1,0 +1,62 @@
+{% from 'components/header.html' import header %}
+{% from 'components/navbars.html' import side_navbar, admin_side_navbar %}
+
+{% extends 'base.html' %}
+
+{% block subtitle %} - Gerenciamento de produtos {% endblock subtitle %}
+
+{% block content %}
+
+{{ admin_side_navbar(current_user) }}
+{{header('Gerenciamento de produtos', current_user)}}
+
+<main class="container py-32">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 px-0">
+      <form action="{{url_for('admin.product.product_create_view')}}" method="post" enctype="multipart/form-data"
+        class="form py-32 px-16 p-md-32">
+        {{ form.csrf_token }}
+
+        <div class="text-center d-block fw-medium fz-16 ff-poppins">
+          Criar novo produto
+        </div>
+
+        <hr class="m-0">
+
+        <div class="input-field-1">
+          <label for="productName">Nome</label>
+          {{ form.name(class="input-1", id="productName", placeholder="Digite o nome do produto", required=True) }}
+        </div>
+
+        <div class="">
+          {{ form.category(class="input-select", required=True) }}
+        </div>
+
+        <div class="">
+          {{ form.type(class="input-select", required=True) }}
+        </div>
+
+        <div class="input-field-1">
+          <label for="productDescription">Descrição</label>
+          {{ form.description(class="input-1", id="productDescription", placeholder="Digite a descrição do produto",
+          rows="10", required=True) }}
+        </div>
+
+        <div class="">
+          <label for="image" class="form-label">Imagem</label>
+          <hr>
+          {{form.picture(class="form-control",accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
+          <div class="pt-16">
+            <img src="{{url_for('static', filename='uploads/products/default.png')}}" class="img-fluid" id="output" />
+          </div>
+        </div>
+
+        {{ form.submit(class="btn-1 bg-green-2 text-white") }}
+      </form>
+    </div>
+  </div>
+</main>
+
+{% include 'components/footer.html' %}
+
+{% endblock content %}

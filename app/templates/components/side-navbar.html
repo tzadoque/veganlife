@@ -6,7 +6,8 @@
   </div>
   <hr class="m-0 bg-dark-1 mb-8">
   <div class="navbar-item">
-    <a href="{{ url_for('index') }}" class="navbar-link {% if request.url_rule.rule == url_for('index') %} active {% endif %} ">
+    <a href="{{ url_for('index') }}"
+      class="navbar-link {% if request.url_rule.rule == url_for('index') %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/home.svg')}}" alt="">
       </div>
@@ -16,7 +17,8 @@
     </a>
   </div>
   <div class="navbar-item">
-    <a href="{{ url_for('produtos') }}" class="navbar-link {% if '/produtos' in request.path %} active {% endif %} ">
+    <a href="{{ url_for('product.products_list_view') }}"
+      class="navbar-link {% if '/produtos' in request.path %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/produtos.svg')}}" alt="">
       </div>
@@ -57,7 +59,7 @@
   </div>
   <hr class="m-0 bg-dark-1 my-8">
   <div class="navbar-item">
-    <a href="{{ url_for('logout') }}" class="navbar-link">
+    <a href="{{ url_for('auth.logout') }}" class="navbar-link">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/sair.svg')}}" alt="">
       </div>
