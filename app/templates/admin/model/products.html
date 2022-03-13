@@ -11,9 +11,9 @@
   {{header('Gerenciamento de produtos', current_user)}}
   <main class="container-fluid container-xxl">
     <div class="py-32 px-80 d-flex gap-32 flex-column">
-
-      <div class="bg-white p-24 box-shadow-1 border-radius-8">
-        <a href="{{url_for('products.create_view')}}">Criar produto</a>
+      <div class="bg-white p-24 box-shadow-1 border-radius-8 d-flex justify-content-between">
+        <div>pesquisa e filtros</div>
+        <a class="btn btn-green-3 text-white border-radius-8" href="{{url_for('products.create_view')}}">Criar produto</a>
       </div>
       <div class="bg-white p-24 box-shadow-1 border-radius-8">
         {% if products.query.all() %}

@@ -11,8 +11,9 @@
 {{header('Gerenciamento de usuários', current_user)}}
 <main class="container-fluid container-xxl">
   <div class="py-32 px-80 d-flex flex-column gap-32">
-    <div class="bg-white p-24 box-shadow-1 border-radius-8">
-      <a href="{{url_for('users.create_view')}}">Criar usuário</a>
+    <div class="bg-white p-24 box-shadow-1 border-radius-8 d-flex justify-content-between">
+      <div>pesquisa e filtros</div>
+      <a class="btn btn-green-3 text-white border-radius-8" href="{{url_for('users.create_view')}}">Criar usuário</a>
     </div>
     <div class="bg-white p-24 box-shadow-1 border-radius-8">
       <div class="table-responsive">

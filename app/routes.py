@@ -100,7 +100,7 @@ def init_app(app):
 
     return render_template("profile.html", user=user, formated_birth_date=formated_birth_date)
   
-  @app.route("/profile/edit")
+  @app.route("/profile/edit", methods=("GET", "POST"))
   def edit_profile():
 
     if not current_user.is_active:
@@ -129,7 +129,7 @@ def init_app(app):
     if form.validate_on_submit():
 
       if User.query.filter_by(email=form.email.data).first():
-        if not form.email.data == user.email:
+        if form.email.data != user.email:
           flash("O email já está registrado", category="danger")
           return redirect(url_for("edit_profile"))
 
@@ -146,10 +146,8 @@ def init_app(app):
         file.save(os.path.join( Config.UPLOAD_FOLDER + '/profiles', filename))
 
         user.profile_picture = file.filename
-        db.session.commit()
       else:
         user.profile_picture = user.profile_picture
-        db.session.commit()
 
       db.session.commit()
 

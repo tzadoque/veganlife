@@ -12,7 +12,7 @@ class RegisterUser(FlaskForm):
   name = StringField("Nome", validators={DataRequired()})
   last_name = StringField("Sobrenome")
   birth_date = DateField("Data de Nascimento", validators={DataRequired()})
-  email = EmailField("E-mail")
+  email = EmailField("E-mail", validators={DataRequired()})
   password = PasswordField("Senha")
   repeat_password = PasswordField("Repetir Senha")
   profile_picture = FileField("Imagem de perfil")

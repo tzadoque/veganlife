@@ -3,42 +3,56 @@
 
 {% extends 'admin/master.html' %}
 
-{% block subtitle %} - Editar produto {% endblock subtitle %}
+{% block subtitle %} - Gerenciamento de produtos {% endblock subtitle %}
 
 {% block content %}
 
   {{ side_navbar_admin(current_user) }}
-  <main class="container-fluid">
-    {{header('Editar produto', current_user)}}
-    <div class="py-32 px-80 d-flex gap-32 flex-column">
-
-      <div class="bg-white p-24 box-shadow-1 rounded">
-        <form action="{{url_for('products.edit_submit', id=product.id)}}" method="post" enctype="multipart/form-data" class="d-flex flex-column">
+  {{header('Gerenciamento de produtos', current_user)}}
+  <main class="container py-32">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 px-0">
+        <form action="{{url_for('products.edit_submit', id=product.id)}}" method="post" enctype="multipart/form-data" class="form py-32 px-16 p-md-32">
           {{ form.csrf_token }}
 
-          <label for="">nome</label>
-          {{ form.name }}
+          <div class="text-center d-block fw-medium fz-16 ff-poppins">
+            Editar produto
+          </div>
+  
+          <hr class="m-0">
 
-          <label for="">categoria</label>
-          {{ form.category }}
+          <div class="input-field-1">
+            <label for="productName">Nome</label>
+            {{ form.name(class="input-1", id="productName", placeholder="Digite o nome do produto", required=True) }}
+          </div>
 
-          <label for="">tipo</label>
-          {{ form.type}}
+          <div class="">
+            {{ form.category(class="input-select", required=True) }}
+          </div>
 
-          <label for="">Descrição</label>
-          {{ form.description }}
+          <div class="">
+            {{ form.type(class="input-select", required=True) }}
+          </div>
 
-          <label for="">Imagem do produto</label>
+          <div class="input-field-1">
+            <label for="productDescription">Descrição</label>
+            {{ form.description(class="input-1", id="productDescription", placeholder="Digite a descrição do produto", rows="10", required=True) }}
+          </div>
 
-          {% if product.picture %}
-            {{form.picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
-            <img src="{{url_for('static', filename='uploads/products/' + product.picture)}}" class="img-product-admin" id="output" />
-          {% else %}
-            {{form.picture(accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
-            <img class="img-product-admin" id="output" />
-          {% endif %}
-
-          {{form.submit(value='Salvar alterações')}}
+          <div>
+            <label for="image">Imagem do produto</label>
+            <hr>
+            {{form.picture(class="form-control", accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
+            <div class="pt-16">
+              {% if product.picture %}
+                <img src="{{url_for('static', filename='uploads/products/' + product.picture)}}" class="img-fluid" id="output" />
+              {% else %}
+                <img src="{{url_for('static', filename='uploads/products/default.png')}}" class="img-fluid" id="output" />
+              {% endif %}
+            </div>
+          </div>
+          
+          {{ form.submit(class="btn-1 bg-green-2 text-white", value='Salvar alterações') }}
         </form>
       </div>
     </div>

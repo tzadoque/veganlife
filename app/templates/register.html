@@ -26,27 +26,24 @@
         </div>
         <div class="input-field-1">
           <label for="lastName">Sobrenome</label>
-          {{ form.last_name(class="input-1 ff-hind fw-medium", id="lastName", placeholder="digite o seu sobrenome")}}
+          {{ form.last_name(class="input-1 ff-hind fw-medium", id="lastName", placeholder="digite o seu sobrenome", required=True)}}
         </div>
         <div class="input-field-1">
           <label for="birthDate">Data de Nascimento</label>
-          {{ form.birth_date(class="input-1 ff-hind fw-medium", id="birthDate") }}
+          {{ form.birth_date(class="input-1 ff-hind fw-medium", id="birthDate", required=True) }}
         </div>
         <div class="input-field-1">
           <label for="email">E-mail</label>
-          {{ form.email(class="input-1 ff-hind fw-medium", id="email", placeholder="seuemail@exemplo.com",
-          required=True) }}
+          {{ form.email(class="input-1 ff-hind fw-medium", id="email", placeholder="seuemail@exemplo.com", required=True) }}
         </div>
         <div class="input-field-1">
           <label for="password">Senha</label>
-          {{ form.password(class="input-1 ff-hind fw-medium", id="password", placeholder="digite uma senha",
-          required=True) }}
+          {{ form.password(class="input-1 ff-hind fw-medium", id="password", placeholder="digite uma senha", required=True) }}
           <input type="checkbox" class="hideShowPassword" onclick="hideShowPassword('password')">
         </div>
         <div class="input-field-1">
           <label for="repeatPassword">Repetir Senha</label>
-          {{ form.repeat_password(class="input-1 ff-hind fw-medium", id="repeatPassword", placeholder="digite a senha
-          novamente", required=True) }}
+          {{ form.repeat_password(class="input-1 ff-hind fw-medium", id="repeatPassword", placeholder="digite a senha novamente", required=True) }}
           <input type="checkbox" class="hideShowPassword" onclick="hideShowPassword('repeatPassword')">
         </div>
         {{ form.submit(class="btn-1 bg-green-2 text-white") }}

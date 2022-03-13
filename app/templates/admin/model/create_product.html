@@ -3,12 +3,12 @@
 
 {% extends 'admin/master.html' %}
 
-{% block subtitle %} - Cadastro de produto {% endblock subtitle %}
+{% block subtitle %} - Gerenciamento de produtos {% endblock subtitle %}
 
 {% block content %}
 
   {{ side_navbar_admin(current_user) }}
-  {{header('Cadastro de produto', current_user)}}
+  {{header('Gerenciamento de produtos', current_user)}}
 
   <main class="container py-32">
     <div class="row justify-content-center">
@@ -16,30 +16,36 @@
         <form action="{{url_for('products.create_view')}}" method="post" enctype="multipart/form-data" class="form py-32 px-16 p-md-32">
           {{ form.csrf_token }}
 
+          <div class="text-center d-block fw-medium fz-16 ff-poppins">
+            Criar novo produto
+          </div>
+
+          <hr class="m-0">
+
           <div class="input-field-1">
             <label for="productName">Nome</label>
-            {{ form.name(class="input-1", id="productName", placeholder="Digite o nome do produto") }}
+            {{ form.name(class="input-1", id="productName", placeholder="Digite o nome do produto", required=True) }}
           </div>
 
           <div class="">
-            {{ form.category(class="input-select", id="productCategory") }}
+            {{ form.category(class="input-select", required=True) }}
           </div>
 
           <div class="">
-            {{ form.type(class="input-select", id="productName") }}
+            {{ form.type(class="input-select", required=True) }}
           </div>
 
           <div class="input-field-1">
-            <label for="productName">Descrição</label>
-            {{ form.description(class="input-1", id="productName") }}
+            <label for="productDescription">Descrição</label>
+            {{ form.description(class="input-1", id="productDescription", placeholder="Digite a descrição do produto", rows="10", required=True) }}
           </div>
 
           <div class="">
             <label for="image" class="form-label">Imagem</label>
             <hr>
             {{form.picture(class="form-control",accept="image/png, image/jpeg", id="image", onchange="loadFile(event)")}}
-            <div>
-              <img class="img-fluid" id="output" />
+            <div class="pt-16">
+              <img src="{{url_for('static', filename='uploads/products/default.png')}}" class="img-fluid" id="output" />
             </div>
           </div>
 
