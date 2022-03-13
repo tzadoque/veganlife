@@ -51,7 +51,7 @@ def register():
     db.session.commit()
 
     login_user(user)
-    return redirect(url_for("index"))
+    return redirect(url_for('home.index_view'))
 
   return render_template("register.html", form=form)
 
@@ -72,7 +72,7 @@ def login():
       return redirect(url_for('auth.login'))
 
     login_user(user)
-    return redirect(url_for("index"))
+    return redirect(url_for('home.index_view'))
 
   return render_template("login.html", form=form)
 
@@ -82,4 +82,4 @@ def logout():
     return redirect(url_for('.login'))
 
   logout_user()
-  return redirect(url_for("index"))
+  return redirect(url_for('home.index_view'))

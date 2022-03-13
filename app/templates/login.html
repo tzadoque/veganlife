@@ -9,7 +9,7 @@
       <form class="form py-32 px-16 p-md-32" action="{{ url_for('auth.login') }}" method="POST">
         {{ form.csrf_token }}
         <div class="d-flex justify-content-center">
-          <a class="" href="{{ url_for('index') }}">
+          <a class="" href="{{ url_for('home.index_view') }}">
             <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" width="169" alt="Logo do veganlife">
           </a>
         </div>

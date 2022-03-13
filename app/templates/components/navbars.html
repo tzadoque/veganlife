@@ -7,8 +7,8 @@
   </div>
   <hr class="m-0 bg-dark-1 mb-8">
   <div class="navbar-item">
-    <a href="{{ url_for('index') }}"
-      class="navbar-link {% if request.url_rule.rule == url_for('index') %} active {% endif %} ">
+    <a href="{{ url_for('home.index_view') }}"
+      class="navbar-link {% if request.url_rule.rule == url_for('home.index_view') %} active {% endif %} ">
       <div class="icon">
         <img src="{{url_for('static', filename='img/svg/home.svg')}}" alt="">
       </div>
