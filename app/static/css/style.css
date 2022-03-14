@@ -19192,6 +19192,7 @@ textarea.form-control-lg {
   padding: 11px;
   border-radius: 8px;
   border: none;
+  text-decoration: none;
 }
 
 a {

@@ -1,6 +1,19 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import StringField, EmailField, PasswordField, BooleanField, SubmitField, DateField, SelectField, TextAreaField, FileField
+from wtforms.fields import (BooleanField, DateField, EmailField, FileField,
+                            PasswordField, SelectField, StringField,
+                            SubmitField, TextAreaField)
 from wtforms.validators import DataRequired
+
+product_categories = [
+  ("", "Selecione a Categoria"),
+  ('P', 'Proteínas'), 
+  ('HL', 'Higiene e Limpeza'),
+  ('B', 'Bebidas'),
+  ('GC', 'Grãos e cereais'),
+  ('HF', 'HortiFruti'),
+  ('L', 'Limpeza'),
+  ('M', 'Mercearia')
+]
 
 class LoginUser(FlaskForm):
   email = EmailField("E-mail")
@@ -19,20 +32,15 @@ class RegisterUser(FlaskForm):
   submit = SubmitField("Cadastrar")
 
 class RegisterProduct(FlaskForm):
-  product_categories = [
-    ("", "Selecione a Categoria"),
-    ('P', 'Proteínas'), 
-    ('HL', 'Higiene e Limpeza'),
-    ('B', 'Bebidas'),
-    ('GC', 'Grãos e cereais'),
-    ('HF', 'HortiFruti'),
-    ('L', 'Limpeza'),
-    ('M', 'Mercearia')
-  ]
-
   name = StringField("Nome do produto", validators={DataRequired()})
   category = SelectField('Selecione a Categoria', choices=product_categories, validators={DataRequired()})
   type = SelectField('Selecione o Tipo', choices=[("", "Selecione o Tipo"), ('V', 'Vegano'), ('N', 'Não vegano')], validators={DataRequired()})
   description = TextAreaField("Descrição", validators={DataRequired()})
   picture = FileField('Imagem do produto')
   submit = SubmitField('Cadastrar produto')
+
+
+class SearchProduct(FlaskForm):
+  search = StringField("Pesquise por nome, categoria ou tipo")
+  category = SelectField('Selecione a Categoria', choices=product_categories)
+  submit = SubmitField('Pesquisar')

@@ -3,7 +3,7 @@ import os
 
 from app import db
 from app.config import Config
-from app.forms import RegisterProduct
+from app.forms import RegisterProduct, SearchProduct
 from app.models.Product import Product
 from flask import redirect, render_template, url_for
 from flask_login import current_user
@@ -12,13 +12,37 @@ from werkzeug.utils import secure_filename
 from . import product
 
 
-@product.route('/admin/products/')
+@product.route('/admin/products/', methods=('GET', 'POST'))
 def product_list_view():
 
   if not current_user.is_active:
     return redirect(url_for('auth.login'))
 
-  return render_template('product_list.html', products=Product())
+  form = SearchProduct()
+
+  if form.validate_on_submit():
+    
+    if form.search.data:
+      return redirect(url_for('.result_product_search', search=form.search.data))
+
+  products = Product.query.all()
+
+  return render_template('product_list.html', products=products, form=form)
+
+@product.route('/admin/products/s=<string:search>', methods=('GET', 'POST'))
+def result_product_search(search):
+
+  if not current_user.is_active:
+    return redirect(url_for('auth.login'))
+
+  form = SearchProduct()
+
+  form.search.data = search
+
+  products = Product.query.filter(Product.name.contains(form.search.data))
+  
+  return render_template('product_list.html', products=products, form=form)
+  
 
 @product.route('/admin/products/create', methods=('GET', 'POST'))
 def product_create_view():

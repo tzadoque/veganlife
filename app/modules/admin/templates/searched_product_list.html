@@ -26,10 +26,10 @@
           {{ form.submit(id='submitSearch') }}
         </form>
       </div>
-      <a class="btn-1 bg-green-3 text-white" href="{{url_for('admin.product.product_create_view')}}">Criar produto</a>
+      <a class="btn btn-green-3 text-white border-radius-8" href="{{url_for('admin.product.product_create_view')}}">Criar produto</a>
     </div>
     <div class="bg-white p-24 box-shadow-1 border-radius-8">
-      {% if products %}
+      {% if products.query.all() %}
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>
@@ -42,7 +42,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for product in products %}
+            {% for product in products.query.all() %}
             <tr>
               <th scope="row">{{product.id}}</th>
               <td>{{product.name}}</td>
