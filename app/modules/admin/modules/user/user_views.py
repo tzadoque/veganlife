@@ -40,7 +40,6 @@ def user_create_view():
 
     user.name = form.name.data
     user.last_name = form.last_name.data
-    user.birth_date = form.birth_date.data
     user.email = form.email.data
     user.password = generate_password_hash(form.password.data)
 

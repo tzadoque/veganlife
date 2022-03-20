@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import (BooleanField, DateField, EmailField, FileField,
-                            PasswordField, SelectField, StringField,
-                            SubmitField, TextAreaField)
+from wtforms.fields import (BooleanField, EmailField, FileField, PasswordField,
+                            SelectField, StringField, SubmitField,
+                            TextAreaField)
 from wtforms.validators import DataRequired
 
 product_categories = [
@@ -24,7 +24,6 @@ class LoginUser(FlaskForm):
 class RegisterUser(FlaskForm):
   name = StringField("Nome", validators={DataRequired()})
   last_name = StringField("Sobrenome")
-  birth_date = DateField("Data de Nascimento", validators={DataRequired()})
   email = EmailField("E-mail", validators={DataRequired()})
   password = PasswordField("Senha")
   repeat_password = PasswordField("Repetir Senha")

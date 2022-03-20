@@ -20,13 +20,7 @@ def profile_view():
 
   user = User.query.filter_by(id=current_user.id).first()
 
-  day = user.birth_date[8] + user.birth_date[9]
-  month = user.birth_date[5] + user.birth_date[6] 
-  year = user.birth_date[0] + user.birth_date[1] + user.birth_date[2] + user.birth_date[3]
-
-  formated_birth_date = f'{day}/{month}/{year}'
-
-  return render_template("profile.html", user=user, formated_birth_date=formated_birth_date)
+  return render_template("profile.html", user=user)
   
 @profile.route("/profile/edit", methods=("GET", "POST"))
 def edit_profile():
@@ -63,7 +57,6 @@ def submit_profile_edit():
 
     user.name = form.name.data
     user.last_name = form.last_name.data
-    user.birth_date = form.birth_date.data
     user.email = form.email.data
 
     if form.profile_picture.data:

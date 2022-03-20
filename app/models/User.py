@@ -10,7 +10,6 @@ class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(84), nullable=False)
   last_name = db.Column(db.String(84))
-  birth_date = db.Column(db.String(84))
   email = db.Column(db.String(84), nullable=False, unique=True, index=True)
   password = db.Column(db.String(12), nullable=False)
   profile_picture = db.Column(db.String(84))

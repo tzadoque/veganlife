@@ -19572,7 +19572,7 @@ a {
   width: 255px;
   height: 348px;
   box-sizing: border-box;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease;
 }
 .product-card .type {
   position: absolute;
@@ -19595,7 +19595,7 @@ a {
 }
 .product-card:hover {
   transform: scale(1.02);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease;
 }
 
 .open-product-card {
