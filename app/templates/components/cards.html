@@ -1,27 +1,3 @@
 {% macro produto(nome, categoria, tipo, descricao, imagem, id) %}
-<a href="{{url_for('product.product_view', id=id)}}" class="text-decoration-none">
-  <div class="product-card">
-    <div class="position-relative">
-      <div class="d-flex justify-content-center">
-        <img class="img-product" src="{{url_for('static', filename='uploads/products/') + imagem }}" alt="">
-      </div>
-      <div class="type {% if tipo == 'V' %} vegan {% else %} not-vegan {% endif %}">
-        {% if tipo == 'V' %} Vegano {% else %} Não vegano {% endif %}
-      </div>
-    </div>
-    <div class="p-16 h-100 d-flex flex-column justify-content-between gap-16 overflow-hidden">
-      <div class="overflow-hidden">
-        <p class="ff-poppins fz-16 fw-semi-bold text-dark-2 m-0 mb-12">
-          {{nome}}
-        </p>
-        <p class="ff-hind fz-13 m-0 text-dark-1">
-          {{descricao | truncate(73, True, '...')}}
-        </p>
-      </div>
-      <div class="save">
-        <img src="{{url_for('static', filename='img/svg/save.svg')}}" alt="">
-      </div>
-    </div>
-  </div>
-</a>
+
 {% endmacro %}

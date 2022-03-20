@@ -1,5 +1,4 @@
 {% from 'components/header.html' import header %}
-{% from 'components/cards.html' import produto %}
 {% from 'components/navbars.html' import side_navbar %}
 
 {% extends 'base.html' %}
@@ -14,11 +13,36 @@
   <main class="container-fluid container-xxl py-32">
 
     <div class="px-64 d-flex gap-32 flex-wrap">
-      {% for product in products %}
-        {{ produto(product.name, product.category, product.type, product.description, product.picture, product.id) }}
-      {% endfor %}
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        {% for product in products %}
+          <a href="{{url_for('product.product_view', id=product.id)}}" class="text-decoration-none col p-16">
+            <div class="product-card">
+              <div class="position-relative">
+                <div class="d-flex justify-content-center">
+                  <img class="img-product" src="{{url_for('static', filename='uploads/products/') + product.picture }}" alt="">
+                </div>
+                <div class="type {% if product.type == 'V' %} vegan {% else %} not-vegan {% endif %}">
+                  {% if product.type == 'V' %} Vegano {% else %} Não vegano {% endif %}
+                </div>
+              </div>
+              <div class="p-16 h-100 d-flex flex-column justify-content-between gap-16 overflow-hidden">
+                <div class="overflow-hidden">
+                  <p class="ff-poppins fz-16 fw-semi-bold text-dark-2 m-0 mb-12">
+                    {{ product.name }}
+                  </p>
+                  <p class="ff-hind fz-13 m-0 text-dark-1">
+                    {{ product.description | truncate(73, True, '...') }}
+                  </p>
+                </div>
+                <div class="save">
+                  <img src="{{url_for('static', filename='img/svg/save.svg')}}" alt="">
+                </div>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
     </div>
-    
   </main>
 
   {% include 'components/footer.html' %}
