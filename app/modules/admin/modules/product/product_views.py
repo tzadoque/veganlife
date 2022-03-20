@@ -73,7 +73,7 @@ def product_create_view():
 
       product.picture = file.filename
     else:
-      product.picture = "default.png"
+      product.picture = "default.svg"
       
     db.session.commit()
 
@@ -139,7 +139,7 @@ def delete_product(id):
 
   product = Product.query.filter_by(id=id).first()
 
-  if product.picture != "default.png":
+  if product.picture != "default.svg":
     file = os.path.join(Config.UPLOAD_FOLDER + '/products', product.picture)
     os.remove(file)
 

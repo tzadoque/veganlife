@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
 from flask_login import current_user
 
 from . import home
@@ -10,4 +10,4 @@ def index_view():
   if not current_user.is_active:
     return render_template("landing-page.html")
 
-  return render_template("home.html")
+  return redirect(url_for('product.products_list_view'))

@@ -55,7 +55,7 @@ def user_create_view():
 
       user.profile_picture = file.filename
     else:
-      user.profile_picture = "default.png"
+      user.profile_picture = "default.svg"
 
     db.session.commit()
 
@@ -70,7 +70,7 @@ def delete_user(id):
     return redirect(url_for('auth.login'))
   user = User.query.filter_by(id=id).first()
 
-  if user.profile_picture and user.profile_picture != "default.png":
+  if user.profile_picture and user.profile_picture != "default.svg":
     file = os.path.join(Config.UPLOAD_FOLDER + '/profiles', user.profile_picture)
     os.remove(file)
 

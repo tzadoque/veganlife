@@ -3,11 +3,7 @@
   <div class="product-card">
     <div class="position-relative">
       <div class="d-flex justify-content-center">
-        {% if imagem %}
         <img class="img-product" src="{{url_for('static', filename='uploads/products/') + imagem }}" alt="">
-        {% else %}
-        <img class="img-product" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
-        {% endif %}
       </div>
       <div class="type {% if tipo == 'V' %} vegan {% else %} not-vegan {% endif %}">
         {% if tipo == 'V' %} Vegano {% else %} Não vegano {% endif %}

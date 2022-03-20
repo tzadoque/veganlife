@@ -46,7 +46,7 @@ def register():
 
       user.profile_picture = file.filename
     else:
-      user.profile_picture = "default.png"
+      user.profile_picture = "default.svg"
     
     db.session.commit()
 

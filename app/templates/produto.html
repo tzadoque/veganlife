@@ -28,7 +28,7 @@
         <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/') + product.picture }}"
           alt="">
         {% else %}
-        <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/default.png')}}" alt="">
+        <img class="img-product-expanded" src="{{url_for('static', filename='uploads/products/default.svg')}}" alt="">
         {% endif %}
         <div class="type {% if product.type == 'V' %} vegan {% else %} not-vegan {% endif %}">
           {% if product.type == 'V' %} Vegano {% else %} Não vegano {% endif %}

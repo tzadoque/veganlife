@@ -6,7 +6,7 @@ from app.config import Config
 from app.forms import RegisterUser
 from app.models.User import User
 from flask import flash, redirect, render_template, url_for
-from flask_login import current_user
+from flask_login import current_user, logout_user
 from werkzeug.utils import secure_filename
 
 from . import profile
@@ -80,3 +80,18 @@ def submit_profile_edit():
     db.session.commit()
 
     return redirect(url_for('profile.profile_view'))
+
+@profile.route('/profile/delete/')
+def delete_profile():
+
+  if not current_user.is_active:
+    return redirect(url_for('auth.login'))
+
+  user = User.query.filter_by(id=current_user.id).first()
+
+  db.session.delete(user)
+  db.session.commit()
+
+  logout_user()
+
+  return redirect(url_for('home.index_view'))
