@@ -32,6 +32,37 @@
   }
 }
 
+.input-field-2 {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 540px;
+  input {
+    border-radius: 100px;
+    width: 100%;
+    border: 1px solid #BFBFBF;
+    padding: 8px 16px;
+    font-family: 'Hind';
+    font-size: 16px;
+    color: #404040;
+    outline: none;
+    &::placeholder {
+      color: #BFBFBF; 
+    }
+    &:focus {
+      border: 1px solid #00A62F;
+    }
+  }
+  input[type='submit'] {
+    display: none;
+  }
+  label {
+    position: absolute;
+    cursor: pointer; 
+    right: 16px;
+  }
+}
+
 @media (max-width: 575.98px) {
   .form {
     border-radius: 0;

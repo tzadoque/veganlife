@@ -16,4 +16,5 @@ def admin_home_view():
     return redirect(url_for('auth.login'))
   products = Product()
   users = User()
-  return render_template('admin_home.html', products=products, users=users)
+  return redirect(url_for('admin.product.product_list_view'))
+  # return render_template('admin_home.html', products=products, users=users)

@@ -18,12 +18,13 @@
 
           {{ form.category(class='input-select') }}
 
-          {{ form.search(class='form-control', placeholder='pesquisar produtos') }}
-
-          <!-- <label for="submitSearch">
-            <img src="{{url_for('static', filename='img/svg/search.svg')}}" alt="">
-          </label> -->
-          {{ form.submit(id='submitSearch') }}
+          <div class="input-field-2">
+            {{ form.search(class='form-control', placeholder='Digite o nome do produto') }}
+            <label for="submitSearch">
+              <img src="{{url_for('static', filename='img/svg/search.svg')}}" alt="">
+            </label>
+            {{ form.submit(id='submitSearch') }}
+          </div>
         </form>
       </div>
       <a class="btn btn-green-3 text-white border-radius-8" href="{{url_for('admin.product.product_create_view')}}">Criar produto</a>
