@@ -1,16 +1,148 @@
-{% extends 'base.html' %}
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;700&family=Poppins:ital,wght@0,300;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!--styles css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='img/svg/veganlife-icon.svg')}}" type="image/x-icon">
+    <title>VeganLife - Página inicial</title>
+  </head>
+  <body class="">
+    <header>
+      {% include 'components/nav.html' %}
+    </header>
 
-{% include 'components/nav.html' %}
+    <main>
+      <div class="container px-3 pt-80 pb-108">
+        <div class="row">
+          <div class="col-6">
+            <h1 class="ff-hind fz-44 text-dark-2 mb-32">
+              Tornando o seu dia a dia vegano sem complicações
+            </h1>
+            <p class="ff-hind fz-16 text-dark-1 mb-64">
+              Atráves desse projeto, desejamos causar um impacto socioambiental positivo para a sua vida e para o mundo.
+            </p>
+            <a href="#saiba-mais" class="btn border-radius-100 bg-green-3 text-white fw-semi-bold ff-poppins fz-12 px-24 py-2" style="border: 2px solid #007D23;">
+              Saiba mais!
+            </a>
+          </div>
+          <div class="col-6 d-flex justify-content-center">
+            <img src="{{ url_for('static', filename='img/svg/illustration.svg')}}" alt="">
+          </div>
+        </div>
+      </div>
+    </main>
 
-{% block subtitle %} - Página inicial {% endblock %}
+    <section id="saiba-mais" class="bg-light-4 w-100 py-108 text-center">
+      <div class="container px-3">
+        <p class="fw-medium fz-20 ff-poppins text-dark-2 mb-80">
+          Alguns recursos oferecidos pelo Veganlife
+        </p>
+        <div class="row row-cols-4">
+          <div class="col">
+            <div class="bg-white px-16 py-40 border-radius-8 box-shadow-1" style="height: 300px;">
+              <div>
+                <img src="{{ url_for('static', filename='img/svg/product.svg') }}" alt="">
+              </div>
+              <p class="text-center ff-hind fz-16 text-dark-2 fw-semi-bold mb-16 mt-40">
+                Pesquisa de produtos
+              </p>
+              <p class="text-center ff-hind fz-14 fw-medium" style="color: #595959;">
+                Pesquise por diferentes tipos de produtos e entenda o porquê são veganos ou não veganos.
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="bg-white px-16 py-40 border-radius-8 box-shadow-1" style="height: 300px;">
+              <div>
+                <img src="{{ url_for('static', filename='img/svg/noticia.svg') }}" alt="">
+              </div>
+              <p class="text-center ff-hind fz-16 text-dark-2 fw-semi-bold mb-16 mt-40">
+                Notícias
+              </p>
+              <p class="text-center ff-hind fz-14 fw-medium" style="color: #595959;">
+                Tenha acesso a notícias diversas sobre o universo vegano e sempre fique informado.
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="bg-white px-16 py-40 border-radius-8 box-shadow-1" style="height: 300px;">
+              <div>
+                <img src="{{ url_for('static', filename='img/svg/receita.svg') }}" alt="">
+              </div>
+              <p class="text-center ff-hind fz-16 text-dark-2 fw-semi-bold mb-16 mt-40">
+                Receitas
+              </p>
+              <p class="text-center ff-hind fz-14 fw-medium" style="color: #595959;">
+                Tenha acesso a diversas receitas veganas para fazer onde e quando quiser.
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="bg-white px-16 py-40 border-radius-8 box-shadow-1" style="height: 300px;">
+              <div>
+                <img src="{{ url_for('static', filename='img/svg/comentario.svg') }}" alt="">
+              </div>
+              <p class="text-center ff-hind fz-16 text-dark-2 fw-semi-bold mb-16 mt-40">
+                Comentários
+              </p>
+              <p class="text-center ff-hind fz-14 fw-medium" style="color: #595959;">
+                Interaja com as publicações deixando comentários que possam ajudar a comunidade vegana.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-{% block content %}
+    <section id="sobre">
+      <div class="container px-3 py-108">
+        <div class="row">
+          <div class="col-7">
+            <h2 class="ff-poppins fz-20 fw-medium text-dark-2 mb-40">
+              Quem somos? Qual o nosso objetivo?
+            </h2>
+            <p class="ff-poppins fz-16 text-dark-2 mb-32">
+              O VEGANLIFE é um projeto itegrador vinculado ao IFRN - Campus Natal - Zona Norte, desenvolvido por 3 estudantes (Ana Alyce, Jefferson Thawan e Zadoque Teófilo) e um professor orientador (Rodolfo Costa).
+            </p>
+            <p class="ff-poppins fz-16 text-dark-2 mb-32">
+              O VEGANLIFE foi desenvolvido com o objetivo principal de ajudar pessoas veganas (sejam iniciantes ou veteranas) a manterem o seu estilo de vida.
+            </p>
+            <p class="ff-poppins fz-16 text-dark-2 mb-32">
+              Atráves desse projeto, desejamos causar um impacto socioambiental positivo para o mundo, trazendo benefícios para a vidas de todos que utilizarem.
+            </p>
+          </div>
+          <div class="col-5 d-flex justify-content-center">
+            <img src="{{ url_for('static', filename='img/svg/illustration-2.svg')}}" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
 
-<body>
-
-  <div class="container">
-    Landing page
-
-  {% include 'components/footer.html' %}
-</body>
-{% endblock %}
+    <footer id="contato" class="py-80" style="background: #007D23;">
+      <div class="container px-3">
+        <img src="{{ url_for('static', filename='img/logo-ifzn.png') }}" alt="Logo IFRN">
+        <div class="d-flex mt-108 gap-108">
+          <a href="https://www.linkedin.com/in/anaalyce/" target="_blank" class="text-white ff-poppins fw-medium fz-14 text-decoration-none d-flex gap-8">
+            <img src="{{ url_for('static', filename='img/svg/linkedin.svg') }}" alt="">
+            www.linkedin.com/in/anaalyce
+          </a>
+          <a href="https://www.linkedin.com/in/jeffersonthawan" target="_blank" class="text-white ff-poppins fw-medium fz-14 text-decoration-none d-flex gap-8">
+            <img src="{{ url_for('static', filename='img/svg/linkedin.svg') }}" alt="">
+            www.linkedin.com/in/jeffersonthawan
+          </a>
+          <a href="https://www.linkedin.com/in/zadoque" target="_blank" class="text-white ff-poppins fw-medium fz-14 text-decoration-none d-flex gap-8">
+            <img src="{{ url_for('static', filename='img/svg/linkedin.svg') }}" alt="">
+            www.linkedin.com/in/zadoque
+          </a>
+        </div>
+      </div>
+    </footer>
+    
+    {% include 'components/footer.html' %}
+  </body>
+</html>

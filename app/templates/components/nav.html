@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-1">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-32">
+  <div class="container px-3">
     <a class="navbar-brand" href="{{ url_for('home.index_view') }}">
       <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" alt="">
     </a>
@@ -8,39 +8,28 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end gap-16">
-        {% if not current_user.is_authenticated %}
-        {% if request.url_rule.rule == url_for('home.index_view') %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn btn-green-3 text-white" href="{{ url_for('auth.register') }}">Cadastre-se</a>
-        </li>
-        {% elif not request.url_rule.rule == url_for('auth.login') %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('auth.register') }}">Cadastre-se</a>
-        </li>
-        {% endif %}
-        {% else %}
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end gap-32">
         <li class="nav-item d-flex align-items-center">
-          {{ current_user.name }}
-          {{ current_user.last_name }}
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <img src="{{ url_for('static', filename='img/svg/profile.svg') }}" width="32" alt="">
+          <a class="ff-hind fz-16 fw-semi-bold text-dark-1 text-decoration-none" href="#sobre">
+            Sobre
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Sair</a></li>
-          </ul>
         </li>
-        {% endif %}
+        <li class="nav-item d-flex align-items-center">
+          <a class="ff-hind fz-16 fw-semi-bold text-dark-1 text-decoration-none" href="#contato">
+            Contato
+          </a>
+        </li>
+        <div class="border"></div>
+        <li class="nav-item">
+          <a class="fz-12 ff-poppins fw-semi-bold btn border border-green-3 border-radius-8 text-green-3 px-40 text-white" href="{{ url_for('auth.login') }}">
+            Entrar
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="fz-12 ff-poppins fw-semi-bold btn btn-green-3 text-white border-radius-8" href="{{ url_for('auth.register') }}">
+            Cadastrar-se
+          </a>
+        </li>
       </ul>
     </div>
   </div>

@@ -9955,6 +9955,10 @@ textarea.form-control-lg {
   font-size: 38px !important;
 }
 
+.fz-44 {
+  font-size: 44px !important;
+}
+
 .fz-48 {
   font-size: 48px !important;
 }
@@ -12175,6 +12179,10 @@ textarea.form-control-lg {
     font-size: 38px !important;
   }
 
+  .fz-sm-44 {
+    font-size: 44px !important;
+  }
+
   .fz-sm-48 {
     font-size: 48px !important;
   }
@@ -13908,6 +13916,10 @@ textarea.form-control-lg {
 
   .fz-md-38 {
     font-size: 38px !important;
+  }
+
+  .fz-md-44 {
+    font-size: 44px !important;
   }
 
   .fz-md-48 {
@@ -15645,6 +15657,10 @@ textarea.form-control-lg {
     font-size: 38px !important;
   }
 
+  .fz-lg-44 {
+    font-size: 44px !important;
+  }
+
   .fz-lg-48 {
     font-size: 48px !important;
   }
@@ -17378,6 +17394,10 @@ textarea.form-control-lg {
 
   .fz-xl-38 {
     font-size: 38px !important;
+  }
+
+  .fz-xl-44 {
+    font-size: 44px !important;
   }
 
   .fz-xl-48 {
@@ -19115,6 +19135,10 @@ textarea.form-control-lg {
     font-size: 38px !important;
   }
 
+  .fz-xxl-44 {
+    font-size: 44px !important;
+  }
+
   .fz-xxl-48 {
     font-size: 48px !important;
   }
@@ -19560,6 +19584,10 @@ a {
 
 .border-radius-50 {
   border-radius: 50%;
+}
+
+.border-radius-100 {
+  border-radius: 100px;
 }
 
 /*# sourceMappingURL=style.css.map */
